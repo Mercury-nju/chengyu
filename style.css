@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #000;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 40px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 18px;
+    color: #00d4ff;
+    font-weight: 300;
+}
+
+main {
+    margin-bottom: 80px;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.feature p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+}
+
+.download, .contact {
+    text-align: center;
+}
+
+.download p, .contact p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+}
+
+.contact a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.contact a:hover {
+    opacity: 0.8;
+}
+
+/* 品牌故事 */
+.story {
+    margin: 60px 0 100px;
+}
+
+.story-item {
+    margin-bottom: 80px;
+    padding: 40px 0;
+    border-left: 2px solid rgba(0, 212, 255, 0.3);
+    padding-left: 40px;
+    position: relative;
+}
+
+.story-number {
+    position: absolute;
+    left: -20px;
+    top: 40px;
+    width: 40px;
+    height: 40px;
+    background: #00d4ff;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.story-item h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #00d4ff;
+}
+
+.story-item p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+/* 核心理念 */
+.philosophy {
+    margin: 80px 0;
+    padding: 60px 40px;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 24px;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.philosophy-item {
+    text-align: left;
+}
+
+.philosophy-item h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #00d4ff;
+}
+
+.philosophy-item p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 截图展示 */
+.screenshots {
+    margin: 80px 0;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.screenshot-item {
+    text-align: center;
+}
+
+.screenshot-item img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.screenshot-item img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+}
+
+.screenshot-item p {
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.screenshot-note {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer nav {
+    margin-bottom: 20px;
+}
+
+footer nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+    color: #00d4ff;
+}
+
+footer nav span {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}
+
+/* 文档页面样式 */
+.doc-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.doc-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.doc-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+}
+
+.doc-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.doc-header .update-date {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.doc-content {
+    line-height: 1.8;
+}
+
+.doc-content h2 {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.doc-content h3 {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.doc-content p {
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.doc-content ul, .doc-content ol {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.doc-content li {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.doc-content strong {
+    color: #00d4ff;
+    font-weight: 500;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #00d4ff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .doc-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-item {
+        padding-left: 30px;
+        margin-bottom: 60px;
+    }
+    
+    .story-item h2 {
+        font-size: 24px;
+    }
+    
+    .story-item p {
+        font-size: 16px;
+    }
+    
+    .philosophy {
+        padding: 40px 20px;
+    }
+    
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
