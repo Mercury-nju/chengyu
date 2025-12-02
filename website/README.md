@@ -12,7 +12,7 @@ Official website for Lumea - Mindfulness Meditation App
 ## Developer Information
 
 - **Developer:** Independent Developer
-- **Contact:** 2945235656@qq.com
+- **Contact:** lihongyangnju@gmail.com
 - **Address:** No. 163 Xianlin Avenue, Qixia District, Nanjing, Jiangsu Province, China
 
 ## Compliance
