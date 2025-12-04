@@ -19,7 +19,7 @@ struct MindfulRevealSessionView: View {
     @State private var lastTouchLocation: CGPoint = .zero
     @State private var isTouching = false
     @State private var time: Double = 0.0
-    @State private var coreScale: CGFloat = 0.0 // For animating core appearance/disappearance
+    @State private var coreScale: CGFloat = 1.0 // Start visible - dot appears immediately
     @State private var lastCaptureSoundTime: Double = 0.0 // Throttle sound
     
     // Timer
@@ -66,9 +66,9 @@ struct MindfulRevealSessionView: View {
                     if (isTouching || isCompleted) && coreScale > 0 {
                         let center = isCompleted ? CGPoint(x: size.width/2, y: size.height/2) : touchLocation
                         
-                        // Core Size grows with fused particles
+                        // Core Size grows with fused particles (made larger for visibility)
                         let progress = Double(fusedCount) / Double(totalParticles)
-                        let coreRadius = (isCompleted ? 80.0 : (20.0 + progress * 40.0)) * coreScale
+                        let coreRadius = (isCompleted ? 80.0 : (30.0 + progress * 40.0)) * coreScale
                         
                         // Core Style
                         if isCompleted {
@@ -220,9 +220,13 @@ struct MindfulRevealSessionView: View {
         particles = []
         let colors: [Color] = [.red, .orange, .yellow]
         
+        // Ensure valid ranges to prevent crash
+        let safeWidth = max(size.width, padding * 2 + 1)
+        let safeHeight = max(size.height, padding * 2 + 1)
+        
         for _ in 0..<totalParticles {
-            let x = CGFloat.random(in: padding...(size.width - padding))
-            let y = CGFloat.random(in: padding...(size.height - padding))
+            let x = CGFloat.random(in: padding...(safeWidth - padding))
+            let y = CGFloat.random(in: padding...(safeHeight - padding))
             let vx = CGFloat.random(in: -2...2)
             let vy = CGFloat.random(in: -2...2)
             let color = colors.randomElement()!
@@ -242,7 +246,8 @@ struct MindfulRevealSessionView: View {
             isTouching = true
             isRunning = true
             // Background sounds removed
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+            // Reset core scale to make orb visible again
+            withAnimation(.easeOut(duration: 0.2)) {
                 coreScale = 1.0
             }
         }
@@ -448,7 +453,8 @@ struct MindfulRevealSessionView: View {
         // Completion sounds removed for peaceful experience
         HapticManager.shared.notification(type: .success)
         
-        StatusManager.shared.recordReadingSession(totalTime: 120, effectiveTime: 120)
+        // Record flow completion
+        StatusManager.shared.recordFlowCompletion()
         unlockNext = true
         
         withAnimation(.easeOut(duration: 1.0)) {

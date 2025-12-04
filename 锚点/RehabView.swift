@@ -32,24 +32,26 @@ struct RehabView: View {
     @ObservedObject var themeManager = ThemeManager.shared // Observe theme
     @State private var showThemeSheet = false
     @State private var showSubscriptionView = false
+    @State private var currentMaterial: FluidSphereVisualizer.SphereMaterial = .default
+    @State private var currentStability: Double = 50.0
     
-    // Helper to convert String <-> Enum
-    var currentMaterial: FluidSphereView.SphereMaterial {
-        switch statusManager.sphereMaterial {
-        case "lava": return .lava
-        case "ice": return .ice
-        case "amber": return .amber
-        case "gold": return .gold
-        case "neon": return .neon
-        case "nebula": return .nebula
-        case "aurora": return .aurora
-        case "sakura": return .sakura
-        case "ocean": return .ocean
-        case "sunset": return .sunset
-        case "forest": return .forest
-        case "galaxy": return .galaxy
-        case "crystal": return .crystal
-        default: return .default
+    // Helper to convert String -> Enum
+    private func updateMaterial() {
+        currentMaterial = switch statusManager.sphereMaterial {
+        case "lava": .lava
+        case "ice": .ice
+        case "amber": .amber
+        case "gold": .gold
+        case "neon": .neon
+        case "nebula": .nebula
+        case "aurora": .aurora
+        case "sakura": .sakura
+        case "ocean": .ocean
+        case "sunset": .sunset
+        case "forest": .forest
+        case "galaxy": .galaxy
+        case "crystal": .crystal
+        default: .default
         }
     }
     
@@ -58,22 +60,18 @@ struct RehabView: View {
             // Background
             themeManager.currentTheme.backgroundView
             
-            // 1. Fluid Sphere
-            // Moves up when cards are shown, centers when immersive
-            FluidSphereView(
+            // 1. Fluid Sphere - 独立层，不受背景影响
+            PersistentFluidSphere(
                 isInteracting: $isInteractingWithFluid,
-                touchLocation: touchLocation,
+                touchLocation: $touchLocation,
                 material: currentMaterial,
-                stability: calculateStability(),
-                isTransparent: true,
-                isStatic: false // 不停止动画，而是通过稳定值控制
+                stability: currentStability,
+                showCards: effectiveShowCards
             )
+            .equatable() // 只在相关属性改变时重建
             .anchorPreference(key: GuideAnchorKey.self, value: .bounds) { anchor in
                 return [0: anchor] // Step 0: Sphere
             }
-                .offset(y: effectiveShowCards ? -180 : 0)
-                .animation(.spring(response: 0.6, dampingFraction: 0.7), value: effectiveShowCards)
-                .zIndex(0)
             
             // 2. Foreground: Task Cards (Floating Light Shadow Cards)
             VStack {
@@ -134,10 +132,10 @@ struct RehabView: View {
                         
                         // 2. Flow Core: Locked if Touch not completed. Active if unlocked & not completed.
                         let isFlowLocked = !statusManager.isTouchCompleted
-                        let isFlowActive = !isFlowLocked && !statusManager.isReadingCompleted
+                        let isFlowActive = !isFlowLocked && !statusManager.isFlowCompleted
                         
                         // 3. Emotional Photolysis: Locked if Flow not completed. Active if unlocked & not completed.
-                        let isPhotoLocked = !statusManager.isReadingCompleted
+                        let isPhotoLocked = !statusManager.isFlowCompleted
                         let isPhotoActive = !isPhotoLocked && !statusManager.isVoiceCompleted
                         
                         // Special Case: If all completed, nothing is "Active" (pulsing), or maybe just free access.
@@ -164,10 +162,10 @@ struct RehabView: View {
                         // Card 2: Flow Core Casting
                         LightShadowCard(
                             title: L10n.flowReadingTitle,
-                            subtitle: statusManager.isReadingCompleted ? L10n.flowReadingCompleted : L10n.flowReadingSubtitle,
+                            subtitle: statusManager.isFlowCompleted ? L10n.flowReadingCompleted : L10n.flowReadingSubtitle,
                             iconType: .eye,
                             color: Color(red: 1.0, green: 0.8, blue: 0.4),
-                            isCompleted: statusManager.isReadingCompleted,
+                            isCompleted: statusManager.isFlowCompleted,
                             isLocked: isFlowLocked,
                             isActive: isFlowActive
                         ) {
@@ -202,7 +200,6 @@ struct RehabView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-            .zIndex(1)
             .animation(.spring(response: 0.5, dampingFraction: 0.8), value: effectiveShowCards)
         }
         .ignoresSafeArea()
@@ -275,8 +272,24 @@ struct RehabView: View {
             VoiceLogSessionView()
         }
         .onAppear {
+            updateMaterial()
+            currentStability = calculateStability()
             if !hasSeenGuide {
                 showGuide = true
+            }
+        }
+        .onChange(of: statusManager.sphereMaterial) { _ in
+            updateMaterial()
+        }
+        .onChange(of: statusManager.stabilityValue) { _ in
+            currentStability = calculateStability()
+        }
+        .onChange(of: isStabilizing) { _ in
+            currentStability = calculateStability()
+        }
+        .onChange(of: stabilizingProgress) { _ in
+            if isStabilizing {
+                currentStability = calculateStability()
             }
         }
         .sheet(isPresented: $showThemeSheet) {
@@ -401,7 +414,8 @@ struct ThemeSelectionView: View {
                                     .font(.caption)
                                     .foregroundColor(themeManager.currentTheme == theme ? .white : .white.opacity(0.5))
                                 
-                                if theme.isPremium {
+                                // 只在非会员状态下显示 VIP 标签
+                                if theme.isPremium && !subscriptionManager.isPremium {
                                     Text("VIP")
                                         .font(.system(size: 8, weight: .bold))
                                         .padding(.horizontal, 4)
@@ -437,5 +451,37 @@ struct ThemeSelectionView: View {
         case .oceanDepths: return Color(hex: "001020")
         case .cherryBlossom: return Color(hex: "200818")
         }
+    }
+}
+
+// MARK: - Persistent Fluid Sphere Wrapper
+
+struct PersistentFluidSphere: View, Equatable {
+    @Binding var isInteracting: Bool
+    @Binding var touchLocation: CGPoint
+    let material: FluidSphereVisualizer.SphereMaterial
+    let stability: Double
+    let showCards: Bool
+    
+    static func == (lhs: PersistentFluidSphere, rhs: PersistentFluidSphere) -> Bool {
+        // 只有这些属性改变时才重建视图
+        return lhs.material == rhs.material &&
+               lhs.stability == rhs.stability &&
+               lhs.showCards == rhs.showCards &&
+               lhs.isInteracting == rhs.isInteracting &&
+               lhs.touchLocation == rhs.touchLocation
+    }
+    
+    var body: some View {
+        FluidSphereVisualizer(
+            isInteracting: $isInteracting,
+            touchLocation: touchLocation,
+            material: material,
+            stability: stability,
+            isTransparent: true,
+            isStatic: false
+        )
+        .offset(y: showCards ? -180 : 0)
+        .animation(.spring(response: 0.6, dampingFraction: 0.7), value: showCards)
     }
 }

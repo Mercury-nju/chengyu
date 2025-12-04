@@ -12,7 +12,7 @@ class SubscriptionManager: ObservableObject {
     @Published var expirationDate: Date?
     @Published var isLoading: Bool = false
     
-    // Product IDs - 匹配 Configuration.storekit 中的配置
+    // Product IDs - 匹配 App Store Connect 中的配置
     enum ProductID: String, CaseIterable {
         case monthly = "lumea.plus.monthly"
         case yearly = "lumea.plus.annual"
@@ -141,26 +141,31 @@ class SubscriptionManager: ObservableObject {
         var activeSubscription: SubscriptionType = .none
         var latestExpirationDate: Date?
         
+        print("🔍 [SubscriptionManager] Checking subscription status...")
+        
         // Check for current entitlements
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
+                print("✅ [SubscriptionManager] Found verified transaction: \(transaction.productID)")
                 
-                // Check if transaction is valid
-                if let expirationDate = transaction.expirationDate {
-                    if expirationDate > Date() {
-                        // Active subscription
-                        if let type = SubscriptionType(rawValue: getSubscriptionType(from: transaction.productID)) {
-                            activeSubscription = type
-                            latestExpirationDate = expirationDate
-                        }
+                // Direct productID matching - simplified logic
+                if transaction.productID == ProductID.monthly.rawValue {
+                    if let expirationDate = transaction.expirationDate, expirationDate > Date() {
+                        print("✅ [SubscriptionManager] Active monthly subscription, expires: \(expirationDate)")
+                        activeSubscription = .monthly
+                        latestExpirationDate = expirationDate
                     }
-                } else {
-                    // Lifetime purchase (no expiration)
-                    if transaction.productID == ProductID.lifetime.rawValue {
-                        activeSubscription = .lifetime
-                        latestExpirationDate = nil
+                } else if transaction.productID == ProductID.yearly.rawValue {
+                    if let expirationDate = transaction.expirationDate, expirationDate > Date() {
+                        print("✅ [SubscriptionManager] Active yearly subscription, expires: \(expirationDate)")
+                        activeSubscription = .yearly
+                        latestExpirationDate = expirationDate
                     }
+                } else if transaction.productID == ProductID.lifetime.rawValue {
+                    print("✅ [SubscriptionManager] Lifetime subscription found")
+                    activeSubscription = .lifetime
+                    latestExpirationDate = nil
                 }
                 
                 purchasedProductIDs.insert(transaction.productID)
@@ -175,6 +180,11 @@ class SubscriptionManager: ObservableObject {
         expirationDate = latestExpirationDate
         
         print("📱 Subscription Status: \(subscriptionType.rawValue), Premium: \(isPremium)")
+        if isPremium {
+            print("🎉 [SubscriptionManager] Premium features UNLOCKED!")
+        } else {
+            print("⚠️ [SubscriptionManager] No active subscription found")
+        }
     }
     
     // MARK: - Listen for Transactions

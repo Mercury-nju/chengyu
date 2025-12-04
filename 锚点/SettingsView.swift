@@ -17,7 +17,6 @@ struct SettingsView: View {
                 // Content
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
-                        appearanceSection
                         audioHapticSection
                         aboutSection
                         versionInfo
@@ -58,21 +57,7 @@ struct SettingsView: View {
         .frame(height: 60)
     }
     
-    private var appearanceSection: some View {
-        VStack(spacing: 0) {
-            SettingNavigationRow(
-                icon: "sparkles",
-                title: L10n.sphereMaterial,
-                action: {
-                    showMaterialPicker = true
-                }
-            )
-        }
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.05))
-        )
-    }
+    // Sphere Material section removed for US version
     
     private var audioHapticSection: some View {
         VStack(spacing: 0) {
@@ -112,7 +97,9 @@ struct SettingsView: View {
                 icon: "doc.text.fill",
                 title: L10n.userAgreement,
                 action: {
-                    // TODO: Show user agreement
+                    if let url = URL(string: "https://www.chengyu.space/terms.html") {
+                        UIApplication.shared.open(url)
+                    }
                 }
             )
             
@@ -124,7 +111,9 @@ struct SettingsView: View {
                 icon: "hand.raised.fill",
                 title: L10n.privacyPolicy,
                 action: {
-                    // TODO: Show privacy policy
+                    if let url = URL(string: "https://www.chengyu.space/privacy.html") {
+                        UIApplication.shared.open(url)
+                    }
                 }
             )
             
@@ -136,7 +125,9 @@ struct SettingsView: View {
                 icon: "info.circle.fill",
                 title: L10n.aboutApp,
                 action: {
-                    // TODO: Show about
+                    if let url = URL(string: "https://chengyu.space") {
+                        UIApplication.shared.open(url)
+                    }
                 }
             )
         }

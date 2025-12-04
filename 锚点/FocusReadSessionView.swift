@@ -355,7 +355,8 @@ struct FocusReadSessionView: View {
         // Sound removed for peaceful completion
         HapticManager.shared.playLockHaptic()
         
-        StatusManager.shared.recordReadingSession(totalTime: totalReadingTime, effectiveTime: effectiveReadingTime)
+        // Record flow completion
+        StatusManager.shared.recordFlowCompletion()
         
         unlockNext = true
         

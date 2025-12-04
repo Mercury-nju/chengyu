@@ -1,21 +1,19 @@
 import SwiftUI
-import DeviceActivity
+
 
 struct StatusView: View {
     @ObservedObject var statusManager = StatusManager.shared
-    @ObservedObject var screenTimeMonitor = ScreenTimeMonitor.shared
-    @ObservedObject var hdaManager = HDAManager.shared
+    @ObservedObject var subscriptionManager = SubscriptionManager.shared
     @ObservedObject var authManager = AuthManager.shared
-    @State private var showHDASettings = false
     @State private var showLoginView = false
     @State private var showProfileView = false
-    @State private var showCLIInfo = false
     @State private var showSVInfo = false
     @State private var showTrendInfo = false
+    @State private var showSubscriptionView = false
     
     // Helper to get material colors
     var currentMaterialColors: [Color] {
-        let material: FluidSphereView.SphereMaterial = FluidSphereView.SphereMaterial.fromString(statusManager.sphereMaterial)
+        let material: FluidSphereVisualizer.SphereMaterial = FluidSphereVisualizer.SphereMaterial.fromString(statusManager.sphereMaterial)
         return material.colors
     }
     
@@ -72,48 +70,10 @@ struct StatusView: View {
         ZStack {
             ThemeManager.shared.currentTheme.backgroundView
             
-            // DeviceActivityReport to trigger Extension
-            // Note: Needs non-zero frame to actually render and trigger extension
-            if screenTimeMonitor.isAuthorized && hdaManager.monitoredAppsCount > 0 {
-                DeviceActivityReport(.totalActivity, filter: screenTimeMonitor.deviceActivityFilter)
-                    .frame(width: 1, height: 1)
-                    .opacity(0.01)  // Nearly invisible but not completely transparent
-                    .allowsHitTesting(false)
-            }
-            
             VStack(spacing: 0) {
                 navigationBar
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
-                    .onAppear {
-                        // Refresh authorization status
-                        screenTimeMonitor.checkAuthorizationStatus()
-                        
-                        print("📊 [StatusView] Appeared")
-                        print("📊 [StatusView] Screen Time authorized: \(screenTimeMonitor.isAuthorized)")
-                        print("📊 [StatusView] Monitored apps count: \(hdaManager.monitoredAppsCount)")
-                        print("📊 [StatusView] Last sync: \(String(describing: screenTimeMonitor.lastSyncDate))")
-                        print("📊 [StatusView] Monitoring active: \(screenTimeMonitor.isMonitoring)")
-                        
-                        // Auto-start monitoring if conditions met
-                        if screenTimeMonitor.isAuthorized && hdaManager.monitoredAppsCount > 0 && !screenTimeMonitor.isMonitoring {
-                            Task {
-                                print("🚀 [StatusView] Starting monitoring...")
-                                await screenTimeMonitor.startMonitoring()
-                                
-                                // Force sync after starting monitoring
-                                try? await Task.sleep(nanoseconds: 1_000_000_000) // Wait 1 second
-                                print("🔄 [StatusView] Force syncing data...")
-                                await screenTimeMonitor.syncAndApplyImpact()
-                            }
-                        } else if screenTimeMonitor.isAuthorized && hdaManager.monitoredAppsCount > 0 {
-                            // If already monitoring, just sync
-                            Task {
-                                print("🔄 [StatusView] Syncing data...")
-                                await screenTimeMonitor.syncAndApplyImpact()
-                            }
-                        }
-                    }
                     .padding(.bottom, 10)
                 
                 ScrollView {
@@ -124,15 +84,11 @@ struct StatusView: View {
             }
             .onAppear {
                 statusManager.checkDailyReset()
-                screenTimeMonitor.checkAuthorizationStatus()
-                
+                // 刷新订阅状态
                 Task {
-                    await screenTimeMonitor.syncAndApplyImpact()
+                    await SubscriptionManager.shared.updateSubscriptionStatus()
                 }
             }
-        }
-        .fullScreenCover(isPresented: $showHDASettings) {
-            HDASettingsView()
         }
         .fullScreenCover(isPresented: $showLoginView) {
             LoginView()
@@ -141,12 +97,6 @@ struct StatusView: View {
             ProfileView()
                 .presentationDetents([.large])
                 .presentationDragIndicator(.hidden)
-        }
-        .sheet(isPresented: $showCLIInfo) {
-            InfoSheetView(
-                title: L10n.cliInfoTitle,
-                content: cliInfoContent
-            )
         }
         .sheet(isPresented: $showSVInfo) {
             InfoSheetView(
@@ -160,89 +110,21 @@ struct StatusView: View {
                 content: trendInfoContent
             )
         }
-        .alert(L10n.cliAlertTitle, isPresented: $statusManager.shouldShowCLIAlert) {
-            Button(L10n.gotIt, role: .cancel) {
-                statusManager.dismissCLIAlert()
-            }
-            Button(L10n.goToMeditate) {
-                statusManager.dismissCLIAlert()
-            }
-        } message: {
-            Text(statusManager.cliAlertMessage)
+        .sheet(isPresented: $showSubscriptionView) {
+            SubscriptionView()
         }
     }
     
     // MARK: - Main Content
     @ViewBuilder
     private var mainContent: some View {
-        cognitiveLoadSection
         stabilityProgressSection
         stabilityDynamicsSection
-        distractionTrajectorySection
         DeepInsightsSection()
         historyChartSection
     }
     
     // MARK: - Section Views
-    private var cognitiveLoadSection: some View {
-        Group {
-            if !screenTimeMonitor.isAuthorized {
-                unauthorizedCard
-            } else {
-                CognitiveLoadCard(
-                    cli: statusManager.calculateCLI(),
-                    monitor: screenTimeMonitor,
-                    onSettingsTap: { showHDASettings = true },
-                    onInfoTap: { showCLIInfo = true }
-                )
-                .padding(.horizontal)
-            }
-        }
-    }
-    
-    private var unauthorizedCard: some View {
-        Button(action: {
-            showHDASettings = true
-        }) {
-            HStack(spacing: 16) {
-                ZStack {
-                    Circle()
-                        .fill(Color.orange.opacity(0.2))
-                        .frame(width: 48, height: 48)
-                    
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 20))
-                        .foregroundColor(.orange)
-                }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(L10n.unlockInsights)
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                    
-                    Text(L10n.authorizeToQuantify)
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.6))
-                }
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14))
-                    .foregroundColor(.white.opacity(0.4))
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white.opacity(0.05))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white.opacity(0.1), lineWidth: 1)
-                    )
-            )
-        }
-        .padding(.horizontal)
-    }
     
     private var stabilityProgressSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -396,49 +278,7 @@ struct StatusView: View {
         .padding(.horizontal)
     }
     
-    private var distractionTrajectorySection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-                        Text(L10n.distractionTrajectory)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                        
-                        // Filter for HDA usage logs
-                        if statusManager.stabilityLogs.filter({ $0.type == .loss && ($0.source.contains("分心") || $0.source.contains("高多巴胺")) }).isEmpty {
-                            HStack {
-                                Spacer()
-                                Text(L10n.goodFocusToday)
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                                Spacer()
-                            }
-                            .padding(.vertical, 10)
-                        } else {
-                            ForEach(statusManager.stabilityLogs.filter({ $0.type == .loss && ($0.source.contains("分心") || $0.source.contains("高多巴胺")) }).prefix(3)) { log in
-                                HStack {
-                                    Image(systemName: "eye.slash.fill")
-                                        .foregroundColor(.red)
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(log.source) // Show actual source (e.g., "高多巴胺应用使用 (30分钟)")
-                                            .font(.caption)
-                                            .foregroundColor(.white)
-                                        Text(timeAgo(log.timestamp))
-                                            .font(.caption2)
-                                            .foregroundColor(.gray)
-                                    }
-                                    Spacer()
-                                    Text(String(format: "-%.1f%%", abs(log.amount)))
-                                        .font(.system(size: 14, weight: .bold, design: .monospaced))
-                                        .foregroundColor(.red)
-                                }
-                                .padding(.vertical, 4)
-                            }
-                        }
-        }
-        .padding()
-        .background(Color.white.opacity(0.05))
-        .cornerRadius(16)
-        .padding(.horizontal)
-    }
+
     
     private var historyChartSection: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -472,11 +312,11 @@ struct StatusView: View {
                                     }
                                 }
                             }
-                            .blur(radius: SubscriptionManager.shared.isPremium ? 0 : 8)
+                            .blur(radius: subscriptionManager.isPremium ? 0 : 8)
                             
-                            if !SubscriptionManager.shared.isPremium {
+                            if !subscriptionManager.isPremium {
                                 StatusPremiumLockOverlay(onUpgrade: {
-                                    // TODO: Navigate to subscription view
+                                    showSubscriptionView = true
                                 })
                             }
                         }
@@ -491,10 +331,6 @@ struct StatusView: View {
     // MARK: - Helper Methods
     
     // MARK: - Info Content
-    
-    var cliInfoContent: String {
-        L10n.cliInfoContent
-    }
     
     var svInfoContent: String {
         L10n.svInfoContent
@@ -680,27 +516,7 @@ struct StatusCard: View {
     }
 }
 
-// Extension to help convert String to SphereMaterial
-extension FluidSphereView.SphereMaterial {
-    static func fromString(_ string: String) -> FluidSphereView.SphereMaterial {
-        switch string {
-        case "lava": return .lava
-        case "ice": return .ice
-        case "amber": return .amber
-        case "gold": return .gold
-        case "neon": return .neon
-        case "nebula": return .nebula
-        case "aurora": return .aurora
-        case "sakura": return .sakura
-        case "ocean": return .ocean
-        case "sunset": return .sunset
-        case "forest": return .forest
-        case "galaxy": return .galaxy
-        case "crystal": return .crystal
-        default: return .default
-        }
-    }
-}
+
 
 // Debug Button Style
 struct DebugButtonStyle: ButtonStyle {
@@ -823,180 +639,8 @@ struct ProfileHeaderView: View {
                             )
                     )
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
-            )
+        )
         }
         .buttonStyle(ScaleButtonStyle())
     }
 }
-
-// MARK: - Cognitive Load Card
-struct CognitiveLoadCard: View {
-    let cli: Double
-    @ObservedObject var monitor: ScreenTimeMonitor
-    @ObservedObject var hdaManager = HDAManager.shared
-    var onSettingsTap: () -> Void
-    
-    var statusColor: Color {
-        if cli >= 90 { return .red }
-        if cli >= 60 { return .orange }
-        if cli >= 30 { return .yellow }
-        return .green
-    }
-    
-    var statusText: String {
-        if cli >= 90 { return L10n.cliStatusCritical }
-        if cli >= 60 { return L10n.cliStatusHigh }
-        if cli >= 30 { return L10n.cliStatusModerate }
-        return L10n.cliStatusGood
-    }
-    
-    var statusIcon: String {
-        if cli >= 90 { return "exclamationmark.triangle.fill" }
-        if cli >= 60 { return "exclamationmark.circle.fill" }
-        if cli >= 30 { return "info.circle.fill" }
-        return "checkmark.circle.fill"
-    }
-    
-    var onInfoTap: () -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Header
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 6) {
-                        Text(L10n.cognitiveLoadIndex)
-                            .font(.system(size: 14))
-                            .foregroundColor(.white.opacity(0.6))
-                        
-                        Button(action: onInfoTap) {
-                            Image(systemName: "info.circle")
-                                .font(.system(size: 12))
-                                .foregroundColor(.white.opacity(0.4))
-                        }
-                    }
-                    
-                    HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("\(Int(cli))")
-                            .font(.system(size: 36, weight: .bold, design: .rounded))
-                            .foregroundColor(statusColor)
-                        
-                        Text("/ 100")
-                            .font(.system(size: 16))
-                            .foregroundColor(.white.opacity(0.4))
-                    }
-                }
-                
-                Spacer()
-                
-                // Settings button with label - Different states
-                Button(action: onSettingsTap) {
-                    if hdaManager.monitoredAppsCount == 0 {
-                        // No apps added - Warning state
-                        VStack(spacing: 4) {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.orange.opacity(0.2))
-                                    .frame(width: 32, height: 32)
-                                
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.orange)
-                            }
-                            
-                            Text(L10n.addApp)
-                                .font(.system(size: 10, weight: .medium))
-                                .foregroundColor(.orange)
-                        }
-                        .padding(8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.orange.opacity(0.1))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.orange.opacity(0.3), lineWidth: 1)
-                                )
-                        )
-                    } else {
-                        // Apps added - Normal state (no badge)
-                        VStack(spacing: 4) {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.cyan.opacity(0.15))
-                                    .frame(width: 32, height: 32)
-                                
-                                Image(systemName: "app.badge.checkmark")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.cyan)
-                            }
-                            
-                            Text(L10n.monitorList)
-                                .font(.system(size: 10))
-                                .foregroundColor(.white.opacity(0.6))
-                        }
-                        .padding(8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.white.opacity(0.05))
-                        )
-                    }
-                }
-            }
-            
-            // Visual indicator - Circular segments
-            HStack(spacing: 8) {
-                ForEach(0..<4, id: \.self) { index in
-                    let threshold = Double((index + 1) * 25)
-                    let isActive = cli >= threshold - 12.5
-                    
-                    VStack(spacing: 4) {
-                        Circle()
-                            .fill(isActive ? statusColor : Color.white.opacity(0.1))
-                            .frame(width: isActive ? 12 : 8, height: isActive ? 12 : 8)
-                            .overlay(
-                                Circle()
-                                    .stroke(statusColor.opacity(0.3), lineWidth: isActive ? 2 : 0)
-                                    .frame(width: 20, height: 20)
-                            )
-                        
-                        Text("\(Int(threshold))")
-                            .font(.system(size: 9))
-                            .foregroundColor(isActive ? statusColor : .white.opacity(0.3))
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-            }
-            .padding(.vertical, 8)
-            
-            // Status description
-            HStack(spacing: 8) {
-                Image(systemName: statusIcon)
-                    .font(.system(size: 14))
-                    .foregroundColor(statusColor)
-                
-                Text(statusText)
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.white)
-                
-                Spacer()
-                
-                if cli > 0 {
-                    Text(L10n.within24h)
-                        .font(.system(size: 11))
-                        .foregroundColor(.white.opacity(0.4))
-                }
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(statusColor.opacity(0.1))
-            )
-        }
-        .padding(20)
-        .background(Color.white.opacity(0.05))
-        .cornerRadius(20)
-    }
-}
-
-

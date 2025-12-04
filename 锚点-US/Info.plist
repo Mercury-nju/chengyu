@@ -17,10 +17,7 @@
 	<string>698417493608-5lqtn6c7tr8snm35fijb3ms44lnabvc6.apps.googleusercontent.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSFamilyActivityUsageDescription</key>
-	<string>澄域 needs Screen Time access to help you quantify the impact of high-dopamine apps on your cognitive resources.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
-
 </dict>
 </plist>

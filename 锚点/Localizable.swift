@@ -36,11 +36,11 @@ struct L10n {
     
     // Onboarding Scenes
     static let onboardingScene1 = isUSVersion ? 
-        "In the digital age,\nmost people are trapped in short-video addiction.\n\nResearch from leading psychology journals confirms:\nThis triggers anxiety, depression,\nleading to loss of patience and decline in deep thinking." :
+        "In the digital age,\nmost people are trapped\nin short-video addiction.\n\nResearch from leading\npsychology journals confirms:\n\nThis triggers anxiety, depression,\nleading to loss of patience\nand decline in deep thinking." :
         "数字时代，\n多数人深陷短视频成瘾困局。\n\n权威心理学期刊研究证实：\n这会引发焦虑、抑郁，\n导致耐心流失、深度思考能力衰退。"
     
     static let onboardingScene2 = isUSVersion ?
-        "This app is built to be 'anti-instinct'.\n\nIt may feel uncomfortable,\neven lacking in 'user experience'.\n\nBut that's the point:\nTo fight against instinctive digital addiction,\nand rebuild your mental control." :
+        "This app is built\nto be 'anti-instinct'.\n\nIt may feel uncomfortable,\neven lacking in\n'user experience'.\n\nBut that's the point:\n\nTo fight against\ninstinctive digital addiction,\nand rebuild your\nmental control." :
         "这款 App，为「反人性」而生。\n\n它或许让你感到不适，\n甚至觉得「缺乏体验感」。\n\n但这正是它的初衷：\n对抗本能的数字沉迷，\n重塑你的心智掌控力。"
     
     static let onboardingScene3Permission = isUSVersion ?
@@ -48,7 +48,7 @@ struct L10n {
         "为了保护你的锚点，\n我们需要监测那些试图夺走你注意力的应用。\n\n请授权「使用情况访问权限」，\n让我们为你抵御数字洪流。"
     
     static let onboardingScene3 = isUSVersion ?
-        "Overcome this discomfort,\nand you will regain:\n\nPatience,\nDeep thinking ability,\nInner peace." :
+        "Overcome this discomfort,\nand you will regain:\n\nPatience,\n\nDeep thinking ability,\n\nInner peace." :
         "克服这些不适，\n你将重新拥有：\n\n耐心、\n深度思考的能力、\n内心的平静。"
     
     static let onboardingSource = isUSVersion ?
@@ -193,7 +193,46 @@ struct L10n {
     static let afternoon = isUSVersion ? "Afternoon" : "午后"
     static let evening = isUSVersion ? "Evening" : "傍晚"
     static let customTime = isUSVersion ? "Custom Time" : "自定义时间"
-    static let addReminder = isUSVersion ? "Add Reminder" : "添加提醒"
+    static let addReminder = isUSVersion ? "Add" : "添加"
+    static let weekdays = isUSVersion ? "Weekdays" : "工作日"
+    static let everyday = isUSVersion ? "Everyday" : "每天"
+    static let reminderLabel = isUSVersion ? "Label" : "提醒标签"
+    static let reminderLabelPlaceholder = isUSVersion ? "e.g., Focus Time" : "例如：专注提醒"
+    static let reminderTime = isUSVersion ? "Time" : "提醒时间"
+    static let addReminderTitle = isUSVersion ? "Add Reminder" : "添加提醒"
+    static let customReminderDefault = isUSVersion ? "Custom Reminder" : "自定义提醒"
+    static let notificationPermissionRequired = isUSVersion ? "Notification Permission Required" : "需要通知权限"
+    static let goToSettings = isUSVersion ? "Settings" : "去设置"
+    static let notificationPermissionDesc = isUSVersion ? "Please allow notifications in Settings to receive daily reminders." : "请在设置中允许澄域发送通知，以便接收每日提醒"
+    
+    // Reminder Messages
+    static let morningMessages = isUSVersion ? [
+        "Morning light, mind reset. Let clarity begin.",
+        "Deep breath. Start today with focus.",
+        "New beginning, new flow. Walk with Lumea."
+    ] : [
+        "清晨微光，心绪归位。此刻，让光澄澈。",
+        "深呼吸。今日启程，专注随行。",
+        "新的开始，新的心流。与澄域同行。"
+    ]
+    
+    static let daytimeMessages = isUSVersion ? [
+        "How is your flow? Take a moment of peace.",
+        "Drop the noise. Your SV is waiting.",
+        "Close eyes for a minute. Breathe with light, return within."
+    ] : [
+        "此刻，心流如何？开启片刻宁静。",
+        "放下喧嚣，你的 SV 值在等你。",
+        "闭眼一分钟。与光，同呼吸，回归内在。"
+    ]
+    
+    static let customMessages = isUSVersion ? [
+        "Time to focus. Forge your core in Lumea.",
+        "Resist distraction. Your flow awaits."
+    ] : [
+        "专注时刻已至。来澄域铸核。",
+        "抵御分心。你的心流正在等你开启。"
+    ]
     
     // MARK: - Serenity Guide
     static let guideStep0 = isUSVersion ?
@@ -222,7 +261,7 @@ struct L10n {
     // MARK: - Touch Anchor
     static let touchAnchorTitle = isUSVersion ? "Touch Anchor" : "触感锚点"
     static let touchAnchorDesc = isUSVersion ? "Touch the sphere to ground yourself in the present moment" : "触摸光球，回到当下此刻"
-    static let touchAnchorSubtitle = isUSVersion ? "Rebuild sensory connection" : "重塑感官连接"
+    static let touchAnchorSubtitle = isUSVersion ? "Rebuild senses" : "重塑感官"
     static let touchAnchorCompleted = isUSVersion ? "Mind anchored" : "心绪已归位"
     static let holdToConnect = isUSVersion ? "Hold to Connect" : "按住以连接"
     static let connected = isUSVersion ? "Connected" : "已连接"
@@ -280,7 +319,7 @@ struct L10n {
     // MARK: - Emotion Release
     static let emotionReleaseTitle = isUSVersion ? "Emotion Photolysis" : "情绪光解"
     static let emotionReleaseDesc = isUSVersion ? "Voice journal to process emotions" : "语音日记，释放情绪"
-    static let emotionReleaseSubtitle = isUSVersion ? "Visualize & destroy emotions" : "具象化情绪销毁"
+    static let emotionReleaseSubtitle = isUSVersion ? "Release emotions" : "释放情绪"
     static let emotionReleaseCompleted = isUSVersion ? "Emotions released" : "情绪已光释"
     static let tapToRecord = isUSVersion ? "Tap below to release emotions" : "点击下方，投递情绪"
     static let recording = isUSVersion ? "Recording..." : "录音中..."
@@ -433,60 +472,7 @@ struct L10n {
     static let statusModerate = isUSVersion ? "Moderate" : "中等"
     static let statusAtRisk = isUSVersion ? "At Risk" : "危险"
     
-    // CLI Status
-    static let cliStatusCritical = isUSVersion ? "Severe Depletion" : "严重透支"
-    static let cliStatusHigh = isUSVersion ? "High Load" : "高负荷"
-    static let cliStatusModerate = isUSVersion ? "Attention Scattered" : "注意力分散"
-    static let cliStatusGood = isUSVersion ? "Good State" : "状态良好"
-    
-    static let cliInfoTitle = isUSVersion ? "Cognitive Load Index (CLI)" : "认知负荷指数（CLI）"
-    static let cliInfoContent = isUSVersion ?
-        """
-        The Cognitive Load Index reflects your brain's cognitive stress level over the past 24 hours.
-        
-        Calculation
-        • Based on usage duration of High Dopamine Apps (HDA)
-        • Longer usage results in higher CLI
-        • Only counts data from the last 24 hours
-        
-        Values
-        • 0-30: Good state, focused attention
-        • 30-60: Starting to scatter, rest recommended
-        • 60-90: High load, immediate rest needed
-        • 90-100: Severe depletion, must stop usage
-        
-        Refresh Mechanism
-        • Resets automatically after 24 hours
-        • Every day is a fresh start
-        
-        Suggestions
-        • Set up a monitor list to track distracting apps
-        • Take a short meditation when CLI exceeds 30
-        • Maintain a healthy state with daily CLI < 30
-        """ :
-        """
-        认知负荷指数反映了你在过去 24 小时内大脑的认知压力水平。
-        
-        计算方式
-        • 基于高多巴胺应用（HDA）的使用时长
-        • 使用时间越长，CLI 越高
-        • 仅统计最近 24 小时的数据
-        
-        数值含义
-        • 0-30：良好状态，注意力集中
-        • 30-60：开始分散，建议休息
-        • 60-90：负荷较高，需要立即休息
-        • 90-100：严重耗竭，必须停止使用
-        
-        刷新机制
-        • 24 小时后自动重置
-        • 每天都是新的开始
-        
-        建议
-        • 设置监测列表，追踪分心应用
-        • CLI 超过 30 时，进行短暂冥想
-        • 保持每日 CLI < 30 的健康状态
-        """
+
     
     // MARK: - MyStatsView (New)
     static let myStatsTitle = isUSVersion ? "My Stats" : "我的数据"
@@ -549,44 +535,44 @@ struct L10n {
     
     static let digitalRelationInfoContent = isUSVersion ?
         """
-        Digital Symbiosis analyzes your interaction patterns with digital devices.
+        Digital Behavior analyzes your app usage patterns and their impact on mental state.
         
-        Digital Distraction Distribution
-        • Statistics on HDA impact on stability
-        • Grouped by app category
-        • Impact Count: Number of times this category caused stability drop
-        • Avg Drop: Average percentage drop per use
+        Behavior Pattern Analysis
+        • Tracks app opening frequency
+        • Monitors background switching patterns
+        • Analyzes late-night usage
+        • Measures meditation completion rate
         
-        App Categories
-        • Social Ripples: Social media apps
-        • Entertainment Vortex: Entertainment apps
-        • Info Flood: News/Info apps
-        • Digital Noise: Other distracting apps
+        Impact Indicators
+        • Frequent Opens: Indicates restlessness
+        • Background Switches: Shows attention fragmentation
+        • Late Night Usage: Affects sleep and recovery
+        • Low Completion: Suggests difficulty focusing
         
         Data Source
-        • Based on your HDA usage records
-        • Tracks stability changes after each use
-        • Helps identify most distracting app types
+        • Based on your in-app behavior patterns
+        • Tracks usage frequency and timing
+        • Helps identify habits affecting focus
         """ :
         """
-        数字共生关系分析你与数字设备的互动模式。
+        数字行为分析你的应用使用模式及其对心理状态的影响。
         
-        数字分心分布
-        • 统计高多巴胺应用（HDA）对稳定值的影响
-        • 按应用类别分组展示
-        • 影响次数：该类应用导致稳定值下降的次数
-        • 平均下降：每次使用平均降低的稳定值百分比
+        行为模式分析
+        • 追踪应用打开频率
+        • 监测后台切换模式
+        • 分析深夜使用情况
+        • 测量冥想完成率
         
-        应用类别
-        • 社交涟漪：社交类应用
-        • 娱乐漩涡：娱乐类应用
-        • 资讯洪流：新闻资讯类应用
-        • 数字喧嚣：其他分心应用
+        影响指标
+        • 频繁打开：表明内心不安
+        • 后台切换：显示注意力分散
+        • 深夜使用：影响睡眠和恢复
+        • 完成率低：表明难以专注
         
         数据来源
-        • 基于你的HDA使用记录
-        • 追踪每次使用后的稳定值变化
-        • 帮助你识别最影响专注的应用类型
+        • 基于你的应用内行为模式
+        • 追踪使用频率和时间
+        • 帮助识别影响专注的习惯
         """
     
     static let meditationEchoInfoContent = isUSVersion ?
@@ -684,7 +670,6 @@ struct L10n {
         
         Losses
         • Daily Natural Decay: -15%
-        • HDA Usage: -10% per hour
         
         Maintaining Balance
         • Need at least +15% daily to counter decay
@@ -694,9 +679,9 @@ struct L10n {
         Visual Feedback
         • SV directly affects the fluid sphere's motion
         • 100% Stability: Slow, small amplitude breathing and floating (Speed 0.2x, Amp 0.5x)
-        • 50% Stability: Medium speed and amplitude (Speed 3.5x, Amp 1.9x)
-        • 0% Stability: Fast, large amplitude violent motion (Speed 7.0x, Amp 3.5x)
-        • Combined with CLI to determine the sphere's motion rate and amplitude
+        • 50% Stability: Medium speed and amplitude (Speed 1.6x, Amp 1.0x)
+        • 0% Stability: Fast, large amplitude violent motion (Speed 3.0x, Amp 1.5x)
+        • Determines the sphere's motion rate and amplitude
         • The sphere is a real-time visualization of your mental state
         
         Design Philosophy
@@ -720,7 +705,6 @@ struct L10n {
         
         损失方式
         • 每日自然衰减：-15%
-        • 使用 HDA：每小时 -10%
         
         维持平衡
         • 每天至少需要 +15% 来对抗衰减
@@ -730,9 +714,9 @@ struct L10n {
         流体光影球的视觉反馈
         • 稳定值直接影响流体光影球的运动状态
         • 100% 稳定：光球缓慢、小幅度地呼吸和漂浮（速度 0.2x，幅度 0.5x）
-        • 50% 稳定：光球以中等速度和幅度运动（速度 3.5x，幅度 1.9x）
-        • 0% 稳定：光球快速、大幅度地剧烈运动（速度 7.0x，幅度 3.5x）
-        • 结合认知负荷指数（CLI），共同决定光球的运动速率和幅度
+        • 50% 稳定：光球以中等速度和幅度运动（速度 1.6x，幅度 1.0x）
+        • 0% 稳定：光球快速、大幅度地剧烈运动（速度 3.0x，幅度 1.5x）
+        • 决定光球的运动速率和幅度
         • 光球是你心智状态的实时视觉化表现
         
         设计理念
@@ -749,12 +733,12 @@ struct L10n {
     static let trendInfoTitle = isUSVersion ? "7-Day Trend" : "7日趋势"
     static let trendInfoContent = isUSVersion ?
         """
-        The 7-Day Trend shows the trajectory of your Core Stability Index (CSI) over the past week.
+        The 7-Day Trend shows the trajectory of your Stability Value (SV) over the past week.
         
-        Core Stability Index (CSI)
-        • Comprehensive assessment of your mental stability
-        • Calculated based on Stability Value (SV) and Cognitive Load (CLI)
-        • Formula: CSI = SV × (1 - CLI/100)
+        Stability Value (SV)
+        • Represents your mental stability resource
+        • Increases through mindfulness practices
+        • Decreases through natural daily decay
         
         Values
         • 70-100: Excellent state, stable flow
@@ -763,7 +747,7 @@ struct L10n {
         
         Trend Analysis
         • Upward: Your mindfulness habits are working
-        • Downward: May need to reduce HDA usage or increase meditation
+        • Downward: May need to increase meditation practice
         • High Fluctuation: Suggests establishing more stable daily habits
         
         Suggestions
@@ -772,17 +756,17 @@ struct L10n {
         • Combine with Deep Analysis page for more detailed insights
         
         Data Retention
-        • Automatically records daily CSI values
+        • Automatically records daily SV values
         • Retains complete history
         • Chart shows trend for the last 7 days
         """ :
         """
-        7日趋势展示你的核心稳定指数（CSI）在过去一周的变化轨迹。
+        7日趋势展示你的稳定值（SV）在过去一周的变化轨迹。
         
-        核心稳定指数（CSI）
-        • 综合评估你的心理稳定状态
-        • 基于稳定值（SV）和认知负荷（CLI）计算
-        • 计算公式：CSI = SV × (1 - CLI/100)
+        稳定值（SV）
+        • 代表你的心理稳定性资源
+        • 通过正念练习增加
+        • 通过自然每日衰减减少
         
         数值含义
         • 70-100：优秀状态，心流稳定
@@ -791,7 +775,7 @@ struct L10n {
         
         趋势分析
         • 上升趋势：说明你的正念习惯在发挥作用
-        • 下降趋势：可能需要减少 HDA 使用或增加冥想
+        • 下降趋势：可能需要增加冥想练习
         • 波动较大：建议建立更稳定的日常习惯
         
         使用建议
@@ -800,14 +784,10 @@ struct L10n {
         • 结合深度解析页面，获取更详细的洞察
         
         数据保存
-        • 自动记录每日的 CSI 数值
+        • 自动记录每日的 SV 数值
         • 保留完整历史数据
         • 图表显示最近 7 天的趋势
         """
-    
-    static let cliAlertTitle = isUSVersion ? "Cognitive Load Alert" : "认知负荷提醒"
-    static let gotIt = isUSVersion ? "Got it" : "知道了"
-    static let goToMeditate = isUSVersion ? "Meditate" : "去冥想"
     
     // MARK: - Insights (New)
     static let insightWeakestPeriod = isUSVersion ? "Your flow light is weakest between %@" : "你的心流之光，在%@最为脆弱。"

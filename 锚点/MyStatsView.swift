@@ -55,7 +55,6 @@ struct DeepInsightsSection: View {
     @StateObject private var insightsManager = DeepInsightsManager.shared
     @ObservedObject var subscriptionManager = SubscriptionManager.shared
     @State private var showFlowStabilityInfo = false
-    @State private var showDigitalRelationInfo = false
     @State private var showMeditationEchoInfo = false
     @State private var showSubscription = false
     
@@ -90,28 +89,7 @@ struct DeepInsightsSection: View {
                 )
             )
             
-            // Digital Symbiosis
-            if !insightsManager.hdaImpactData.isEmpty {
-                SimpleInsightCard(
-                    title: L10n.digitalSymbiosis,
-                    onInfoTap: { showDigitalRelationInfo = true },
-                    content: AnyView(
-                        ZStack {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(L10n.digitalDistraction)
-                                    .font(.system(size: 13, weight: .medium))
-                                    .foregroundColor(.white.opacity(0.7))
-                                HDAImpactChart(data: insightsManager.hdaImpactData)
-                            }
-                            .blur(radius: subscriptionManager.isPremium ? 0 : 8)
-                            
-                            if !subscriptionManager.isPremium {
-                                StatusPremiumLockOverlay(onUpgrade: { showSubscription = true })
-                            }
-                        }
-                    )
-                )
-            }
+
             
             // Serenity Echo
             if !insightsManager.meditationEffectData.isEmpty {
@@ -137,18 +115,15 @@ struct DeepInsightsSection: View {
             }
         }
         .task {
+            // 刷新订阅状态
+            await subscriptionManager.updateSubscriptionStatus()
+            // 刷新数据
             await insightsManager.refreshAllData()
         }
         .sheet(isPresented: $showFlowStabilityInfo) {
             InfoSheetView(
                 title: L10n.flowStability,
                 content: flowStabilityInfoContent
-            )
-        }
-        .sheet(isPresented: $showDigitalRelationInfo) {
-            InfoSheetView(
-                title: L10n.digitalSymbiosis,
-                content: digitalRelationInfoContent
             )
         }
         .sheet(isPresented: $showMeditationEchoInfo) {
@@ -166,10 +141,6 @@ struct DeepInsightsSection: View {
     
     var flowStabilityInfoContent: String {
         L10n.flowStabilityInfoContent
-    }
-    
-    var digitalRelationInfoContent: String {
-        L10n.digitalRelationInfoContent
     }
     
     var meditationEchoInfoContent: String {

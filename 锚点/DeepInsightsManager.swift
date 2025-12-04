@@ -55,18 +55,6 @@ struct SVRecoveryData: Identifiable {
     }
 }
 
-struct HDAImpactData: Identifiable {
-    let id = UUID()
-    let appCategory: String
-    var impactCount: Int
-    var avgSVDrop: Double
-    var totalUsageTime: TimeInterval
-    
-    var usageHours: Double {
-        return totalUsageTime / 3600
-    }
-}
-
 struct MeditationEffectData: Identifiable {
     let id = UUID()
     let sessionDate: Date
@@ -94,7 +82,6 @@ class DeepInsightsManager: ObservableObject {
     @Published var svHeatmapData: [SVHeatmapData] = []
     @Published var focusInterruptionData: FocusInterruptionData?
     @Published var svRecoveryData: [SVRecoveryData] = []
-    @Published var hdaImpactData: [HDAImpactData] = []
     @Published var meditationEffectData: [MeditationEffectData] = []
     
     // 洞察文案
@@ -115,7 +102,6 @@ class DeepInsightsManager: ObservableObject {
         await calculateSVHeatmap(period: .week)
         await analyzeFocusInterruptions()
         await calculateRecoveryCurve()
-        await analyzeHDAImpact()
         await analyzeMeditationEffect()
         await generateInsights()
     }
@@ -345,43 +331,7 @@ class DeepInsightsManager: ObservableObject {
         self.svRecoveryData = recoveryData
     }
     
-    // MARK: - B. 数字共生关系
-    
-    func analyzeHDAImpact() async {
-        let statusManager = StatusManager.shared
-        let screenTimeMonitor = ScreenTimeMonitor.shared
-        
-        // 分析HDA使用对SV的影响
-        var impactDict: [String: HDAImpactData] = [:]
-        
-        // 从稳定值日志中找出HDA相关的下降
-        let hdaLogs = statusManager.stabilityLogs.filter { log in
-            log.type == .loss && (log.source.contains("高多巴胺") || log.source.contains("分心"))
-        }
-        
-        for log in hdaLogs {
-            // 提取应用类别（简化处理）
-            let category = extractCategory(from: log.source)
-            
-            if var data = impactDict[category] {
-                data.impactCount += 1
-                data.avgSVDrop = (data.avgSVDrop * Double(data.impactCount - 1) + abs(log.amount)) / Double(data.impactCount)
-                data.totalUsageTime += 1800 // 假设每次30分钟
-                impactDict[category] = data
-            } else {
-                impactDict[category] = HDAImpactData(
-                    appCategory: category,
-                    impactCount: 1,
-                    avgSVDrop: abs(log.amount),
-                    totalUsageTime: 1800
-                )
-            }
-        }
-        
-        self.hdaImpactData = Array(impactDict.values).sorted { $0.impactCount > $1.impactCount }
-    }
-    
-    // MARK: - C. 宁静回响
+    // MARK: - B. 宁静回响
     
     func analyzeMeditationEffect() async {
         let statusManager = StatusManager.shared
@@ -429,8 +379,16 @@ class DeepInsightsManager: ObservableObject {
     
     func generateInsights() async {
         await generateFlowStabilityInsights()
-        await generateDigitalRelationInsights()
-        await generateMeditationEchoInsights()
+        // Removed calls to generateDigitalRelationInsights and generateMeditationEchoInsights
+        // as per instruction to remove ScreenTimeMonitor related code and return empty insights
+        // Digital relation insights are now handled by getDigitalRelationInsights()
+        // Meditation echo insights are no longer generated here.
+    }
+    
+    func getDigitalRelationInsights() -> [String] {
+        // Note: CognitiveLoadTracker removed - digital relation insights deprecated
+        // Return empty array as behavior tracking is no longer available
+        return []
     }
     
     private func generateFlowStabilityInsights() async {
@@ -457,44 +415,14 @@ class DeepInsightsManager: ObservableObject {
         self.flowStabilityInsights = insights
     }
     
+    // Digital Relation insights removed - no longer tracking HDA data
     private func generateDigitalRelationInsights() async {
-        var insights: [String] = []
-        
-        // 分析最敏感的应用类型
-        if let topImpact = hdaImpactData.first {
-            insights.append(String(format: L10n.insightSensitiveApp, topImpact.appCategory))
-        }
-        
-        // 分析使用时长影响
-        if let topImpact = hdaImpactData.first {
-            let hours = Int(topImpact.usageHours)
-            insights.append(String(format: L10n.insightUsageImpact, hours))
-        }
-        
-        // 分析时段模式
-        insights.append(L10n.insightDigitalGravity)
-        
-        self.digitalRelationInsights = insights
+        self.digitalRelationInsights = []
     }
     
+    // Meditation Echo insights removed - functionality deprecated
     private func generateMeditationEchoInsights() async {
-        var insights: [String] = []
-        
-        // 分析平均提升幅度
-        if !meditationEffectData.isEmpty {
-            let avgImprovement = meditationEffectData.map { $0.improvementPercentage }.reduce(0, +) / Double(meditationEffectData.count)
-            insights.append(String(format: L10n.insightMeditationGain, avgImprovement))
-        }
-        
-        // 分析长期趋势
-        if meditationEffectData.count > 10 {
-            insights.append(L10n.insightLongTermTrend)
-        }
-        
-        // 分析模式效果
-        insights.append(L10n.insightModeEffect)
-        
-        self.meditationEchoInsights = insights
+        self.meditationEchoInsights = []
     }
     
     // MARK: - Helper Methods

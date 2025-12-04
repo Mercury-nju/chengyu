@@ -44,7 +44,7 @@ struct DailyReminderView: View {
                     
                     Spacer()
                     
-                    Text("每日提醒")
+                    Text(L10n.dailyReminderTitle)
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                     
@@ -53,7 +53,7 @@ struct DailyReminderView: View {
                     Button(action: {
                         showAddReminder = true
                     }) {
-                        Text("添加")
+                        Text(L10n.addReminder)
                             .font(.system(size: 16))
                             .foregroundColor(.cyan)
                     }
@@ -66,10 +66,10 @@ struct DailyReminderView: View {
                     VStack(spacing: 16) {
                         // Morning Reminder
                         ReminderCard(
-                            title: "晨间提醒",
+                            title: L10n.morning + " " + L10n.dailyReminderTitle,
                             time: $morningTime,
                             isEnabled: $morningEnabled,
-                            weekdays: "工作日",
+                            weekdays: L10n.weekdays,
                             onToggle: { enabled in
                                 if enabled {
                                     scheduleMorningReminder()
@@ -81,10 +81,10 @@ struct DailyReminderView: View {
                         
                         // Afternoon Reminder
                         ReminderCard(
-                            title: "午后提醒",
+                            title: L10n.afternoon + " " + L10n.dailyReminderTitle,
                             time: $afternoonTime,
                             isEnabled: $afternoonEnabled,
-                            weekdays: "每天",
+                            weekdays: L10n.everyday,
                             onToggle: { enabled in
                                 if enabled {
                                     scheduleAfternoonReminder()
@@ -96,10 +96,10 @@ struct DailyReminderView: View {
                         
                         // Evening Reminder
                         ReminderCard(
-                            title: "傍晚提醒",
+                            title: L10n.evening + " " + L10n.dailyReminderTitle,
                             time: $eveningTime,
                             isEnabled: $eveningEnabled,
-                            weekdays: "每天",
+                            weekdays: L10n.everyday,
                             onToggle: { enabled in
                                 if enabled {
                                     scheduleEveningReminder()
@@ -131,15 +131,15 @@ struct DailyReminderView: View {
                 }
             }
         }
-        .alert("需要通知权限", isPresented: $showPermissionAlert) {
-            Button("取消", role: .cancel) { }
-            Button("去设置") {
+        .alert(L10n.notificationPermissionRequired, isPresented: $showPermissionAlert) {
+            Button(L10n.cancel, role: .cancel) { }
+            Button(L10n.goToSettings) {
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url)
                 }
             }
         } message: {
-            Text("请在设置中允许澄域发送通知，以便接收每日提醒")
+            Text(L10n.notificationPermissionDesc)
         }
         .sheet(isPresented: $showAddReminder) {
             AddCustomReminderView { label, time in
@@ -155,24 +155,13 @@ struct DailyReminderView: View {
     }
     
     // Morning reminder messages
-    let morningMessages = [
-        "清晨微光，心绪归位。此刻，让光澄澈。",
-        "深呼吸。今日启程，专注随行。",
-        "新的开始，新的心流。与澄域同行。"
-    ]
+    let morningMessages = L10n.morningMessages
     
     // Afternoon/Evening messages
-    let daytimeMessages = [
-        "此刻，心流如何？开启片刻宁静。",
-        "放下喧嚣，你的 SV 值在等你。",
-        "闭眼一分钟。与光，同呼吸，回归内在。"
-    ]
+    let daytimeMessages = L10n.daytimeMessages
     
     // Custom reminder messages
-    let customMessages = [
-        "专注时刻已至。来澄域铸核。",
-        "抵御分心。你的心流正在等你开启。"
-    ]
+    let customMessages = L10n.customMessages
     
     func scheduleMorningReminder() {
         let message = morningMessages.randomElement() ?? morningMessages[0]
@@ -381,7 +370,7 @@ struct CustomReminderCard: View {
                     Spacer()
                     
                     Button(action: onDelete) {
-                        Text("删除")
+                        Text(L10n.delete)
                             .font(.system(size: 14))
                             .foregroundColor(.red)
                     }
@@ -414,11 +403,11 @@ struct AddCustomReminderView: View {
                 VStack(spacing: 20) {
                     // Label Input
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("提醒标签")
+                        Text(L10n.reminderLabel)
                             .font(.system(size: 14))
                             .foregroundColor(.white.opacity(0.6))
                         
-                        TextField("例如：专注提醒", text: $reminderLabel)
+                        TextField(L10n.reminderLabelPlaceholder, text: $reminderLabel)
                             .font(.system(size: 16))
                             .foregroundColor(.white)
                             .padding()
@@ -431,7 +420,7 @@ struct AddCustomReminderView: View {
                     
                     // Time Picker
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("提醒时间")
+                        Text(L10n.reminderTime)
                             .font(.system(size: 14))
                             .foregroundColor(.white.opacity(0.6))
                         
@@ -446,14 +435,14 @@ struct AddCustomReminderView: View {
                 }
                 .padding(.top, 20)
             }
-            .navigationTitle("添加提醒")
+            .navigationTitle(L10n.addReminderTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.black, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("取消") {
+                    Button(L10n.cancel) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .foregroundColor(.white)
@@ -461,7 +450,7 @@ struct AddCustomReminderView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(L10n.done) {
-                        let label = reminderLabel.isEmpty ? "自定义提醒" : reminderLabel
+                        let label = reminderLabel.isEmpty ? L10n.customReminderDefault : reminderLabel
                         onAdd(label, reminderTime)
                         presentationMode.wrappedValue.dismiss()
                     }

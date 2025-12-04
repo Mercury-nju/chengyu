@@ -17,7 +17,7 @@ struct CoreCastingView: View {
     @State private var showPreviewHint = false
     
     // Helper to convert String <-> Enum
-    var currentMaterial: FluidSphereView.SphereMaterial {
+    var currentMaterial: FluidSphereVisualizer.SphereMaterial {
         // 如果正在预览，显示预览材质
         let materialId = previewMaterial ?? statusManager.sphereMaterial
         
@@ -55,7 +55,7 @@ struct CoreCastingView: View {
         ]
     }
     
-    var materials: [(name: String, type: FluidSphereView.SphereMaterial, id: String, locked: Bool)] {
+    var materials: [(name: String, type: FluidSphereVisualizer.SphereMaterial, id: String, locked: Bool)] {
         [
             // 免费材质
             (L10n.materialDefault, .default, "default", false),
@@ -83,7 +83,14 @@ struct CoreCastingView: View {
             ThemeManager.shared.currentTheme.backgroundView
             
             // Preview Window
-            FluidSphereView(isInteracting: $isInteracting, touchLocation: touchLocation, material: currentMaterial, isTransparent: true)
+            FluidSphereVisualizer(
+                isInteracting: $isInteracting, 
+                touchLocation: touchLocation, 
+                material: currentMaterial, 
+                stability: 35.0, // Fixed stability for consistent animation speed
+                isTransparent: true
+            )
+                .offset(y: -60) // 向上偏移，保持在画面中心
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in

@@ -53,9 +53,9 @@ struct SVHeatmapChart: View {
                 
                 // Legend
                 HStack(spacing: 16) {
-                    LegendItem(color: .cyan, label: "高")
-                    LegendItem(color: .purple, label: "中")
-                    LegendItem(color: Color.red.opacity(0.6), label: "低")
+                    LegendItem(color: .cyan, label: L10n.isUSVersion ? "High" : "高")
+                    LegendItem(color: .purple, label: L10n.isUSVersion ? "Med" : "中")
+                    LegendItem(color: Color.red.opacity(0.6), label: L10n.isUSVersion ? "Low" : "低")
                 }
                 .padding(.top, 8)
             }
@@ -64,8 +64,9 @@ struct SVHeatmapChart: View {
     }
     
     private func dayLabel(_ day: Int) -> String {
-        let days = ["今天", "昨天", "2天前", "3天前", "4天前", "5天前", "6天前"]
-        return days[day]
+        let daysEN = ["Today", "Yesterday", "2d ago", "3d ago", "4d ago", "5d ago", "6d ago"]
+        let daysCN = ["今天", "昨天", "2天前", "3天前", "4天前", "5天前", "6天前"]
+        return L10n.isUSVersion ? daysEN[day] : daysCN[day]
     }
 }
 
@@ -119,7 +120,7 @@ struct FocusInterruptionChart: View {
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                     
-                    Text("中断率")
+                    Text(L10n.isUSVersion ? "Interrupt Rate" : "中断率")
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.6))
                 }
@@ -180,7 +181,7 @@ struct SVRecoveryCurveChart: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Text("平均恢复: \(avgMinutes)分钟")
+                            Text(L10n.isUSVersion ? "Avg Recovery: \(avgMinutes)min" : "平均恢复: \(avgMinutes)分钟")
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(.cyan)
                                 .padding(.horizontal, 12)
@@ -231,78 +232,8 @@ struct RecoveryCurvePath: Shape {
     }
 }
 
-// MARK: - HDA Impact Chart
-
-struct HDAImpactChart: View {
-    let data: [HDAImpactData]
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            ForEach(data.prefix(5)) { impact in
-                HStack(spacing: 12) {
-                    // Category icon
-                    ZStack {
-                        Circle()
-                            .fill(categoryColor(impact.appCategory).opacity(0.2))
-                            .frame(width: 40, height: 40)
-                        
-                        Image(systemName: categoryIcon(impact.appCategory))
-                            .font(.system(size: 16))
-                            .foregroundColor(categoryColor(impact.appCategory))
-                    }
-                    
-                    // Info
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(impact.appCategory)
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.white)
-                        
-                        Text("\(impact.impactCount)次影响 · 平均-\(String(format: "%.1f", impact.avgSVDrop))%")
-                            .font(.system(size: 12))
-                            .foregroundColor(.white.opacity(0.6))
-                    }
-                    
-                    Spacer()
-                    
-                    // Bar
-                    GeometryReader { geo in
-                        let maxCount = data.map { $0.impactCount }.max() ?? 1
-                        let width = geo.size.width * CGFloat(impact.impactCount) / CGFloat(maxCount)
-                        
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(
-                                LinearGradient(
-                                    colors: [categoryColor(impact.appCategory), categoryColor(impact.appCategory).opacity(0.5)],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .frame(width: width, height: 8)
-                            .shadow(color: categoryColor(impact.appCategory).opacity(0.5), radius: 4)
-                    }
-                    .frame(width: 80, height: 8)
-                }
-                .padding(.vertical, 8)
-            }
-        }
-    }
-    
-    private func categoryColor(_ category: String) -> Color {
-        switch category {
-        case "社交媒体": return .blue
-        case "娱乐": return .purple
-        default: return .purple
-        }
-    }
-    
-    private func categoryIcon(_ category: String) -> String {
-        switch category {
-        case "社交媒体": return "bubble.left.and.bubble.right.fill"
-        case "娱乐": return "play.circle.fill"
-        default: return "play.circle.fill"
-        }
-    }
-}
+// MARK: - HDA Impact Chart (Deprecated)
+// This chart has been removed as HDA monitoring functionality is no longer available
 
 // MARK: - Meditation Effect Chart
 
@@ -317,7 +248,7 @@ struct MeditationEffectChart: View {
                     Text("\(data.count)")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.cyan)
-                    Text("冥想次数")
+                    Text(L10n.isUSVersion ? "Sessions" : "冥想次数")
                         .font(.system(size: 11))
                         .foregroundColor(.white.opacity(0.6))
                 }
@@ -326,7 +257,7 @@ struct MeditationEffectChart: View {
                     Text(String(format: "+%.1f%%", averageImprovement))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.green)
-                    Text("平均提升")
+                    Text(L10n.isUSVersion ? "Avg Gain" : "平均提升")
                         .font(.system(size: 11))
                         .foregroundColor(.white.opacity(0.6))
                 }
@@ -335,7 +266,7 @@ struct MeditationEffectChart: View {
                     Text("\(Int(totalMinutes))分")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.purple)
-                    Text("累计时长")
+                    Text(L10n.isUSVersion ? "Total" : "累计时长")
                         .font(.system(size: 11))
                         .foregroundColor(.white.opacity(0.6))
                 }
@@ -351,7 +282,7 @@ struct MeditationEffectChart: View {
                             Text(dateLabel(effect.sessionDate))
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(.white)
-                            Text("\(Int(effect.duration / 60))分钟")
+                            Text(L10n.isUSVersion ? "\(Int(effect.duration / 60))min" : "\(Int(effect.duration / 60))分钟")
                                 .font(.system(size: 10))
                                 .foregroundColor(.white.opacity(0.5))
                         }

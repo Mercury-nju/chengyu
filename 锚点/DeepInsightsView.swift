@@ -9,13 +9,11 @@ struct DeepInsightsView: View {
     
     enum InsightTab: CaseIterable {
         case flowStability
-        case digitalRelation
         case meditationEcho
         
         var title: String {
             switch self {
             case .flowStability: return L10n.flowStability
-            case .digitalRelation: return L10n.digitalRelation
             case .meditationEcho: return L10n.meditationEcho
             }
         }
@@ -23,7 +21,6 @@ struct DeepInsightsView: View {
         var icon: String {
             switch self {
             case .flowStability: return "waveform.path.ecg"
-            case .digitalRelation: return "app.connected.to.app.below.fill"
             case .meditationEcho: return "sparkles"
             }
         }
@@ -82,8 +79,6 @@ struct DeepInsightsView: View {
                         switch selectedTab {
                         case .flowStability:
                             FlowStabilityView(insightsManager: insightsManager)
-                        case .digitalRelation:
-                            DigitalRelationView(insightsManager: insightsManager)
                         case .meditationEcho:
                             MeditationEchoView(insightsManager: insightsManager)
                         }
@@ -207,35 +202,7 @@ struct PremiumLockOverlay: View {
     }
 }
 
-// MARK: - B. Digital Relation View
-
-struct DigitalRelationView: View {
-    @ObservedObject var insightsManager: DeepInsightsManager
-    
-    var body: some View {
-        VStack(spacing: 24) {
-            // Insights Cards
-            InsightCardsSection(insights: insightsManager.digitalRelationInsights)
-            
-            // HDA Impact Distribution
-            if !insightsManager.hdaImpactData.isEmpty {
-                SectionCard(title: L10n.hdaImpactDistribution, icon: "app.badge") {
-                    HDAImpactChart(data: insightsManager.hdaImpactData)
-                }
-            }
-            
-            // Digital Distraction Heatmap
-            SectionCard(title: L10n.digitalDistractionHeatmap, icon: "chart.bar.xaxis") {
-                Text(L10n.dataCollecting)
-                    .font(.system(size: 14))
-                    .foregroundColor(.white.opacity(0.5))
-                    .frame(height: 200)
-            }
-        }
-    }
-}
-
-// MARK: - C. Meditation Echo View
+// MARK: - B. Meditation Echo View
 
 struct MeditationEchoView: View {
     @ObservedObject var insightsManager: DeepInsightsManager

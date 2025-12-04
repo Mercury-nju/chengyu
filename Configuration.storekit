@@ -5,17 +5,17 @@
   ],
   "products" : [
     {
-      "displayPrice" : "129.99",
+      "displayPrice" : "299",
       "familyShareable" : false,
       "internalID" : "6670001001",
       "localizations" : [
         {
-          "description" : "One-time payment, unlock all premium features forever",
-          "displayName" : "Lumea Plus Lifetime",
-          "locale" : "en_US"
+          "description" : "一次付费，永久解锁所有高级功能",
+          "displayName" : "澄域 Plus 永久版",
+          "locale" : "zh_CN"
         }
       ],
-      "productID" : "lumea.plus.lifetime",
+      "productID" : "com.chengyu.anchor.lifetime",
       "referenceName" : "Lifetime",
       "type" : "NonConsumable"
     }
@@ -25,8 +25,8 @@
     "_developerTeamID" : "YOUR_TEAM_ID",
     "_failTransactionsEnabled" : false,
     "_lastSynchronizedDate" : 748108800.0,
-    "_locale" : "en_US",
-    "_storefront" : "USA",
+    "_locale" : "zh_CN",
+    "_storefront" : "CHN",
     "_storeKitErrors" : [
       {
         "current" : null,
@@ -80,12 +80,12 @@
       "id" : "21483924",
       "localizations" : [
         {
-          "description" : "Unlock the complete mindfulness experience",
-          "displayName" : "Lumea Plus",
-          "locale" : "en_US"
+          "description" : "解锁完整的心智修行体验",
+          "displayName" : "澄域 Plus",
+          "locale" : "zh_CN"
         }
       ],
-      "name" : "Lumea Plus",
+      "name" : "澄域 Plus",
       "subscriptions" : [
         {
           "adHocOffers" : [
@@ -94,7 +94,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "8.99",
+          "displayPrice" : "12.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6670000002",
@@ -106,12 +106,12 @@
           },
           "localizations" : [
             {
-              "description" : "Unlock all premium features, monthly subscription",
-              "displayName" : "Lumea Plus Monthly",
-              "locale" : "en_US"
+              "description" : "解锁所有高级功能，按月订阅",
+              "displayName" : "澄域 Plus 月度订阅",
+              "locale" : "zh_CN"
             }
           ],
-          "productID" : "lumea.plus.monthly",
+          "productID" : "com.chengyu.anchor.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly",
           "subscriptionGroupID" : "21483924",
@@ -124,7 +124,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "69.99",
+          "displayPrice" : "129.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6670000004",
@@ -136,12 +136,12 @@
           },
           "localizations" : [
             {
-              "description" : "Unlock all premium features, yearly subscription, equivalent to $5.83/month",
-              "displayName" : "Lumea Plus Annual",
-              "locale" : "en_US"
+              "description" : "解锁所有高级功能，按年订阅，相当于每月 ¥10.83",
+              "displayName" : "澄域 Plus 年度订阅",
+              "locale" : "zh_CN"
             }
           ],
-          "productID" : "lumea.plus.annual",
+          "productID" : "com.chengyu.anchor.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Yearly",
           "subscriptionGroupID" : "21483924",

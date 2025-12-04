@@ -41,11 +41,6 @@ struct __App: App {
             .animation(.easeInOut(duration: 0.8), value: hasSeenOnboarding)
             .animation(.easeInOut(duration: 1.0), value: showSplash)
             .onAppear {
-                // Sync HDA usage data when app launches
-                Task {
-                    await ScreenTimeMonitor.shared.syncAndApplyImpact()
-                }
-                
                 // Start ambient background music
                 SoundManager.shared.startAmbientBackgroundMusic()
             }

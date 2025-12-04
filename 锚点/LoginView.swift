@@ -194,7 +194,11 @@ struct LoginView: View {
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.4))
                     
-                    Button(L10n.termsOfService) { }
+                    Button(L10n.termsOfService) {
+                        if let url = URL(string: "https://www.chengyu.space/terms.html") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.7))
                     
@@ -202,7 +206,11 @@ struct LoginView: View {
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.4))
                     
-                    Button(L10n.privacyPolicy) { }
+                    Button(L10n.privacyPolicy) {
+                        if let url = URL(string: "https://www.chengyu.space/privacy.html") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.7))
                 }

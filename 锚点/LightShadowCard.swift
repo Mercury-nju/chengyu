@@ -48,9 +48,21 @@ struct LightShadowCard: View {
                 
                 // 3. Light Point (Replaces Arrow)
                 if isCompleted {
-                     Image(systemName: "checkmark")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white.opacity(0.6))
+                    // Glowing Light Point for completed state
+                    ZStack {
+                        // Glow
+                        Circle()
+                            .fill(Color.white.opacity(0.3))
+                            .frame(width: 20, height: 20)
+                            .blur(radius: 8)
+                        
+                        // Core
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 8, height: 8)
+                            .shadow(color: .white, radius: 5)
+                    }
+                    .frame(width: 40, height: 40)
                 } else {
                     LightPointView(color: color, isActive: isActive, isLocked: isLocked)
                 }

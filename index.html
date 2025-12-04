@@ -1,94 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumea - Mindfulness Meditation App</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <!-- Video Carousel Background -->
+    <div class="video-carousel">
+        <video class="bg-video active" autoplay muted loop playsinline>
+            <source src="视频背景/森林.mp4" type="video/mp4">
+        </video>
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="视频背景/大海.mp4" type="video/mp4">
+        </video>
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="视频背景/深海.mp4" type="video/mp4">
+        </video>
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="视频背景/秋叶.mp4" type="video/mp4">
+        </video>
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="视频背景/雾山.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#story">Our Story</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>Lumea</h1>
-            <p class="tagline">Find Your Inner Peace Through Mindfulness</p>
+        <!-- Minimalist Hero -->
+        <header class="hero-section">
+            <h1 class="main-title">Lumea</h1>
+            <p class="subtitle">Find Your Inner Peace</p>
+            <a href="https://apps.apple.com/app/lumea" class="download-btn" target="_blank">Download on App Store</a>
         </header>
 
-        <main>
-            <section class="hero">
-                <h2>Reclaim Your Attention in the Digital Age</h2>
-                <p>Lumea helps you build psychological stability and combat digital distractions through guided mindfulness practices.</p>
-            </section>
+        <!-- Product Story Section -->
+        <section id="story" class="content-section story-section">
+            <h2>Why Lumea?</h2>
+            <div class="story-content">
+                <p>In an era of constant digital noise, our attention is fragmented, and our minds are restless. We
+                    built Lumea not just as an app, but as a sanctuary.</p>
+                <p>We believe that true peace comes from within. By combining ancient mindfulness practices with modern
+                    interactive design, Lumea helps you reclaim your focus and rebuild your psychological stability.</p>
+                <p>It's time to stop scrolling and start being.</p>
+            </div>
+        </section>
 
-            <section class="features">
-                <h2>Core Features</h2>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🧘</div>
-                        <h3>Meditation</h3>
-                        <p>Guided meditation sessions with calming music to help you find inner peace and reduce stress.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Touch Anchor</h3>
-                        <p>Rebuild sensory connection and resist impulses through focused touch exercises.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Flow Forging</h3>
-                        <p>Deep focus practice to restore your attention span and enhance cognitive abilities.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">💫</div>
-                        <h3>Emotion Photolysis</h3>
-                        <p>Visualize and release emotional burdens through voice journaling and guided exercises.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Stability Tracking</h3>
-                        <p>Monitor your psychological stability value and track your progress over time.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3>Cognitive Load Index</h3>
-                        <p>Measure the impact of digital distractions on your mental state and well-being.</p>
-                    </div>
+        <!-- Features Section -->
+        <section id="features" class="content-section">
+            <h2>Core Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">01</div>
+                    <h3>Meditation</h3>
+                    <p>Guided sessions to find your center.</p>
                 </div>
-            </section>
-
-            <section class="visual-feedback">
-                <h2>Your Mind, Visualized</h2>
-                <p>Experience a unique fluid light sphere that reflects your mental state in real-time. When you're calm, it breathes gently. When you're anxious, it fluctuates intensely. It's a mirror of your inner self.</p>
-            </section>
-
-            <section class="download">
-                <h2>Download Lumea</h2>
-                <p>Available on iOS. Start your mindfulness journey today.</p>
-                <a href="https://apps.apple.com/app/lumea" class="download-button" target="_blank">
-                    Download on the App Store
-                </a>
-            </section>
-
-            <section class="contact">
-                <h2>Get in Touch</h2>
-                <p>Have questions or feedback? We'd love to hear from you.</p>
-                <p>Email: <a href="mailto:lihongyangnju@gmail.com">lihongyangnju@gmail.com</a></p>
-            </section>
-        </main>
+                <div class="feature-card">
+                    <div class="feature-icon">02</div>
+                    <h3>Touch Anchor</h3>
+                    <p>Reconnect with the present moment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">03</div>
+                    <h3>Flow Forging</h3>
+                    <p>Deep focus training for your mind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">04</div>
+                    <h3>Emotion Photolysis</h3>
+                    <p>Release burdens through voice.</p>
+                </div>
+            </div>
+        </section>
 
         <footer>
-            <nav>
-                <a href="privacy.html">Privacy Policy</a>
-                <span>·</span>
-                <a href="terms.html">Terms of Service</a>
-            </nav>
             <p class="copyright">© 2025 Lumea. All rights reserved.</p>
         </footer>
     </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

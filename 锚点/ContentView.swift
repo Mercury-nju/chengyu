@@ -8,7 +8,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             RehabView()
                 .tabItem {
-                    Label(L10n.tabCalm, systemImage: "circle.grid.cross")
+                    Label(L10n.tabRehab, systemImage: "circle.grid.cross")
                 }
                 .tag(0)
             

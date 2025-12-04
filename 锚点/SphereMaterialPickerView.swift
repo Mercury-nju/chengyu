@@ -69,7 +69,7 @@ struct SphereMaterialPickerView: View {
                 .padding(.bottom, 20)
                 
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 24) {
+                    LazyVStack(spacing: 24, pinnedViews: []) {
                         // Preview
                         VStack(spacing: 12) {
                             Text(L10n.preview)
@@ -82,7 +82,7 @@ struct SphereMaterialPickerView: View {
                                     .fill(Color.white.opacity(0.05))
                                     .frame(height: 200)
                                 
-                                FluidSphereView(
+                                FluidSphereVisualizer(
                                     isInteracting: .constant(false),
                                     touchLocation: .zero,
                                     material: getCurrentMaterial(),
@@ -90,10 +90,9 @@ struct SphereMaterialPickerView: View {
                                     isTransparent: true,
                                     isStatic: true
                                 )
-                                .frame(height: 180) // Fix: Reduced size to fit in container without clipping
+                                .frame(height: 180)
                             }
                             .frame(height: 200)
-                            // .clipped() // Removed clipping to allow glow
                         }
                         
                         // Free Materials
@@ -160,7 +159,7 @@ struct SphereMaterialPickerView: View {
         }
     }
     
-    private func getCurrentMaterial() -> FluidSphereView.SphereMaterial {
+    private func getCurrentMaterial() -> FluidSphereVisualizer.SphereMaterial {
         switch statusManager.sphereMaterial {
         case "lava": return .lava
         case "ice": return .ice

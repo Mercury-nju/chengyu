@@ -67,11 +67,11 @@ struct VoiceLogSessionView: View { // Keeping name to avoid breaking RehabView r
             }
             
             // 3. Visuals (Breathing Dot OR Shadow Core)
-            if sessionState == .recording {
+            if sessionState == .idle || sessionState == .recording {
                 // Breathing Dot (Recording)
                 Circle()
                     .fill(Color.white)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 40, height: 40)
                     .scaleEffect(1.0 + CGFloat(audioRecorder.amplitude) * 0.5) // Pulse with voice
                     .opacity(0.8 + Double(audioRecorder.amplitude) * 0.2)
                     .shadow(color: .white, radius: 10 + CGFloat(audioRecorder.amplitude) * 10)
@@ -146,8 +146,12 @@ struct VoiceLogSessionView: View { // Keeping name to avoid breaking RehabView r
                     case .naming:
                         Text(L10n.nameThisCore)
                     case .observing:
-                        Text(L10n.observeCore)
-                            .multilineTextAlignment(.center)
+                        VStack(spacing: 12) {
+                            ForEach(L10n.observeCore.components(separatedBy: "\n"), id: \.self) { line in
+                                Text(line)
+                            }
+                        }
+                        .multilineTextAlignment(.center)
                     case .photolysis:
                         Text(L10n.photolyzing)
                     case .completed:
@@ -161,7 +165,7 @@ struct VoiceLogSessionView: View { // Keeping name to avoid breaking RehabView r
                         }
                     }
                 }
-                .font(Theme.fontTitle())
+                .font(.system(size: 20, weight: .medium))
                 .foregroundColor(.white)
                 .padding(.top, 60)
                 .opacity(sessionState == .completed && !showCompletionText ? 0.0 : 0.8) // Hide default text in completed
@@ -199,14 +203,14 @@ struct VoiceLogSessionView: View { // Keeping name to avoid breaking RehabView r
                             Circle()
                                 .stroke(Color.white, lineWidth: 2)
                                 .frame(width: 80, height: 80)
-                                .overlay(Circle().fill(Color.red).frame(width: 60, height: 60))
+                                .overlay(Circle().fill(Color.white).frame(width: 60, height: 60))
                         }
                     case .recording:
                         Button(action: stopRecording) {
                             Circle()
                                 .stroke(Color.white, lineWidth: 2)
                                 .frame(width: 80, height: 80)
-                                .overlay(RoundedRectangle(cornerRadius: 4).fill(Color.red).frame(width: 40, height: 40))
+                                .overlay(RoundedRectangle(cornerRadius: 4).fill(Color.white).frame(width: 40, height: 40))
                         }
                     case .observing:
                         Button(action: startPhotolysis) {

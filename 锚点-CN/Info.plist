@@ -48,8 +48,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSFamilyActivityUsageDescription</key>
-	<string>澄域需要访问使用情况数据来帮助您量化高多巴胺应用对认知资源的影响。</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>澄域需要麦克风权限以记录您的情绪日志。</string>
 	<key>GIDClientID</key>

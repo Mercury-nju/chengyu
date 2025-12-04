@@ -31,13 +31,14 @@ struct SplashView: View {
                 }
                 
                 // The Breathing Sphere
-                FluidSphereView(
+                FluidSphereVisualizer(
                     isInteracting: .constant(false),
                     touchLocation: .zero,
                     material: targetMaterial,
                     stability: 75.0, // Calm, stable state
                     isTransparent: true,
-                    isStatic: true // Keep sphere static, only breathing animation
+                    isStatic: true,
+                    isFullyStatic: true // Completely static, no internal animations
                 )
                 .frame(width: 280, height: 280)
                 .scaleEffect(breathScale)
@@ -56,10 +57,10 @@ struct SplashView: View {
     private func startSmoothAnimation() {
         print("🎬 Splash: Animation started")
         
-        // Immediately show the sphere with fade in and scale up (slower)
+        // Immediately show the sphere with fade in (sphere remains still)
         withAnimation(.easeIn(duration: 0.5)) {
             sphereOpacity = 0.9
-            breathScale = 1.0 // Start at normal size
+            // breathScale remains 1.0 - no breathing animation
         }
         
         // Haptic feedback at start
@@ -67,48 +68,35 @@ struct SplashView: View {
             HapticManager.shared.impact(style: .light)
         }
         
-        // Start breathing animation after sphere is visible (0.5s - 1.8s)
+        // After sphere is visible, trigger ripple effect
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            print("🫁 Splash: Starting breath animation")
-            // Inhale (slow and smooth)
-            withAnimation(.easeInOut(duration: 0.7)) {
-                breathScale = 1.1
+            print("💫 Splash: Triggering ripple")
+            
+            // Trigger ripple without breathing animation
+            withAnimation(.easeOut(duration: 1.2)) {
+                rippleScale = 2.5
+                rippleOpacity = 1.0
             }
             
-            // Exhale + Ripple
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                print("💨 Splash: Exhale + Ripple")
-                // Exhale back to normal
+            // Fade out ripple and then fade out splash immediately after
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 withAnimation(.easeOut(duration: 0.6)) {
-                    breathScale = 1.0
+                    rippleOpacity = 0.0
                 }
                 
-                // Trigger ripple
-                withAnimation(.easeOut(duration: 1.2)) {
-                    rippleScale = 2.5
-                    rippleOpacity = 1.0
-                }
-                
-                // Fade out ripple
+                // Start fading out splash right after ripple completes (total ~2.2s)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    withAnimation(.easeOut(duration: 0.6)) {
-                        rippleOpacity = 0.0
+                    print("👋 Splash: Fading out")
+                    withAnimation(.easeOut(duration: 0.5)) {
+                        viewOpacity = 0.0
+                    }
+                    
+                    // Deactivate splash
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        print("✅ Splash: Deactivating (isActive = false)")
+                        isActive = false
                     }
                 }
-            }
-        }
-        
-        // Fade out entire splash (3.5s - 4.5s) - Extended duration
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            print("👋 Splash: Fading out")
-            withAnimation(.easeOut(duration: 1.0)) {
-                viewOpacity = 0.0
-            }
-            
-            // Deactivate splash
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                print("✅ Splash: Deactivating (isActive = false)")
-                isActive = false
             }
         }
     }
@@ -116,7 +104,7 @@ struct SplashView: View {
     // MARK: - Helpers
     
     /// Get the target material (user's choice or default)
-    private var targetMaterial: FluidSphereView.SphereMaterial {
+    private var targetMaterial: FluidSphereVisualizer.SphereMaterial {
         let savedMaterial = StatusManager.shared.sphereMaterial
         switch savedMaterial {
         case "lava": return .lava

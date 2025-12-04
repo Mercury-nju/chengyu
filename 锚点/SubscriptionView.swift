@@ -3,11 +3,14 @@ import StoreKit
 
 struct SubscriptionView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject var authManager = AuthManager.shared
     @State private var selectedPlan: SubscriptionPlan = .yearly
     @State private var isProcessing = false
     @State private var showError = false
     @State private var errorMessage = ""
+    @State private var showLoginView = false
+    @State private var showSuccessMessage = false
     
     enum SubscriptionPlan {
         case monthly
@@ -224,8 +227,16 @@ struct SubscriptionView: View {
                             
                             // Footer Links
                             HStack(spacing: 20) {
-                                Button(L10n.termsOfService) { /* TODO */ }
-                                Button(L10n.privacyPolicy) { /* TODO */ }
+                                Button(L10n.termsOfService) {
+                                    if let url = URL(string: "https://www.chengyu.space/terms.html") {
+                                        UIApplication.shared.open(url)
+                                    }
+                                }
+                                Button(L10n.privacyPolicy) {
+                                    if let url = URL(string: "https://www.chengyu.space/privacy.html") {
+                                        UIApplication.shared.open(url)
+                                    }
+                                }
                                 Button(L10n.subRestorePurchase) { handleRestore() }
                             }
                             .font(.system(size: 12))
@@ -242,6 +253,45 @@ struct SubscriptionView: View {
         } message: {
             Text(errorMessage)
         }
+        .fullScreenCover(isPresented: $showLoginView) {
+            LoginView()
+                .onDisappear {
+                    // 登录完成后关闭订阅页面
+                    if authManager.isLoggedIn {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+        }
+        .overlay(
+            Group {
+                if showSuccessMessage {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 20))
+                                .foregroundColor(.green)
+                            Text(L10n.isUSVersion ? "Subscription successful!" : "订阅成功！")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.white.opacity(0.1))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                )
+                        )
+                        .padding(.bottom, 100)
+                    }
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .animation(.spring(), value: showSuccessMessage)
+                }
+            }
+        )
     }
     
     private func getPrice(for plan: SubscriptionPlan) -> String {
@@ -257,7 +307,18 @@ struct SubscriptionView: View {
                 let success = try await subscriptionManager.purchase(selectedPlan.productID)
                 if success {
                     HapticManager.shared.notification(type: .success)
-                    presentationMode.wrappedValue.dismiss()
+                    
+                    // 订阅成功后的处理
+                    if authManager.isLoggedIn {
+                        // 已登录：直接关闭并显示成功消息
+                        showSuccessMessage = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } else {
+                        // 未登录：提示登录以同步会员权益
+                        showLoginView = true
+                    }
                 }
             } catch {
                 errorMessage = error.localizedDescription

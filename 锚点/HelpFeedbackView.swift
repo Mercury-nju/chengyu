@@ -30,7 +30,7 @@ struct HelpFeedbackView: View {
         }
         .sheet(isPresented: $showMailComposer) {
             MailComposeView(
-                recipients: ["support@chengyu.space"],
+                recipients: ["lihongyangnju@gmail.com"],
                 subject: L10n.isUSVersion ? "Lumea App Feedback" : "澄域 App 反馈",
                 body: feedbackText,
                 onDismiss: { result in
@@ -49,7 +49,7 @@ struct HelpFeedbackView: View {
         .alert(L10n.isUSVersion ? "Cannot Send Email" : "无法发送邮件", isPresented: $showMailError) {
             Button(L10n.isUSVersion ? "OK" : "确定", role: .cancel) { }
         } message: {
-            Text(L10n.isUSVersion ? "Please configure an email account on your device, or send email to support@chengyu.space" : "请在设备上配置邮件账户，或直接发送邮件至 support@chengyu.space")
+            Text(L10n.isUSVersion ? "Please configure an email account on your device, or send email to lihongyangnju@gmail.com" : "请在设备上配置邮件账户，或直接发送邮件至 lihongyangnju@gmail.com")
         }
     }
     
@@ -247,7 +247,7 @@ struct HelpFeedbackView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text(L10n.isUSVersion ? "Email: support@chengyu.space" : "邮箱：support@chengyu.space\n微信：ChengYuApp")
+                    Text(L10n.isUSVersion ? "Email: lihongyangnju@gmail.com" : "邮箱：lihongyangnju@gmail.com")
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.6))
                         .lineSpacing(4)

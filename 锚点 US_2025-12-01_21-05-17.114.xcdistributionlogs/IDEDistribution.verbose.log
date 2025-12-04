@@ -1,0 +1,363 @@
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodTVOSAppStoreDistribution: 0x88f544010> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodAppStoreDistributionVisionOS: 0x88f544390> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodMacAppStoreDistribution: 0x88f5444e0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Accepted distribution method <IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodWatchOSAdHoc: 0x88f544290> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodMacAdHoc: 0x88f544320> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Accepted distribution method <IDEDistributionMethodiOSAdHoc: 0x88f544600>
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodTVOSAdHoc: 0x88f5444d0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodAdHocVisionOS: 0x88f5444c0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodWatchOSEnterprise: 0x88f544030> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodEnterpriseVisionOS: 0x88f544020> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Accepted distribution method <IDEDistributionMethodiOSEnterprise: 0x88f544250>
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodTVOSEnterprise: 0x88f544520> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodDevelopmentSignedVisionOS: 0x88f5442e0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodWatchOSDevelopmentSigned: 0x88f544280> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodTVOSDevelopmentSigned: 0x88f5440e0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Accepted distribution method <IDEDistributionMethodDevelopmentSigned: 0x88f544500>
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodDeveloperID: 0x88f544490> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodDeveloperIDNotarizedApp: 0x88f544510> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodSaveBuiltProducts: 0x88f544270> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodDevelopmentSignedMac: 0x88f5443e0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodMacApplication: 0x88f544470> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodAppStoreValidationVisionOS: 0x88f544040> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodTVOSAppStoreValidation: 0x88f544310> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodMacAppStoreValidation: 0x88f5444b0> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodiOSAppStoreValidation: 0x88f544480> because it doesn't support distributing archive
+2025-12-01 13:05:17 +0000 [MT] Rejected distribution method <IDEDistributionMethodExportArchive: 0x88f544230> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAppStoreDistribution: 0x88f544010> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAppStoreDistributionVisionOS: 0x88f544390> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAppStoreDistribution: 0x88f5444e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSAdHoc: 0x88f544290> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAdHoc: 0x88f544320> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSAdHoc: 0x88f544600>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAdHoc: 0x88f5444d0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAdHocVisionOS: 0x88f5444c0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSEnterprise: 0x88f544030> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodEnterpriseVisionOS: 0x88f544020> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSEnterprise: 0x88f544250>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSEnterprise: 0x88f544520> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDevelopmentSignedVisionOS: 0x88f5442e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSDevelopmentSigned: 0x88f544280> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSDevelopmentSigned: 0x88f5440e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodDevelopmentSigned: 0x88f544500>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDeveloperID: 0x88f544490> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDeveloperIDNotarizedApp: 0x88f544510> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodSaveBuiltProducts: 0x88f544270> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDevelopmentSignedMac: 0x88f5443e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacApplication: 0x88f544470> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAppStoreValidationVisionOS: 0x88f544040> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAppStoreValidation: 0x88f544310> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAppStoreValidation: 0x88f5444b0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodiOSAppStoreValidation: 0x88f544480> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodExportArchive: 0x88f544230> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Available distribution methods: {(
+    <IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>,
+    <IDEDistributionMethodiOSAdHoc: 0x88f544600>,
+    <IDEDistributionMethodiOSEnterprise: 0x88f544250>,
+    <IDEDistributionMethodDevelopmentSigned: 0x88f544500>
+)}
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAppStoreDistribution: 0x88f544010> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAppStoreDistributionVisionOS: 0x88f544390> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAppStoreDistribution: 0x88f5444e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSAdHoc: 0x88f544290> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAdHoc: 0x88f544320> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSAdHoc: 0x88f544600>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAdHoc: 0x88f5444d0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAdHocVisionOS: 0x88f5444c0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSEnterprise: 0x88f544030> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodEnterpriseVisionOS: 0x88f544020> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodiOSEnterprise: 0x88f544250>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSEnterprise: 0x88f544520> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDevelopmentSignedVisionOS: 0x88f5442e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodWatchOSDevelopmentSigned: 0x88f544280> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSDevelopmentSigned: 0x88f5440e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Accepted distribution method <IDEDistributionMethodDevelopmentSigned: 0x88f544500>
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDeveloperID: 0x88f544490> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDeveloperIDNotarizedApp: 0x88f544510> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodSaveBuiltProducts: 0x88f544270> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodDevelopmentSignedMac: 0x88f5443e0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacApplication: 0x88f544470> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodAppStoreValidationVisionOS: 0x88f544040> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodTVOSAppStoreValidation: 0x88f544310> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodMacAppStoreValidation: 0x88f5444b0> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodiOSAppStoreValidation: 0x88f544480> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Rejected distribution method <IDEDistributionMethodExportArchive: 0x88f544230> because it doesn't support distributing archive
+2025-12-01 13:05:18 +0000  Available distribution methods: {(
+    <IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>,
+    <IDEDistributionMethodiOSAdHoc: 0x88f544600>,
+    <IDEDistributionMethodiOSEnterprise: 0x88f544250>,
+    <IDEDistributionMethodDevelopmentSigned: 0x88f544500>
+)}
+2025-12-01 13:05:18 +0000  IDEDistributionItem init <DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>
+2025-12-01 13:05:18 +0000  Set distributionItems on context: (
+    "<IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/\U951a\U70b9 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba7000; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(\n    \"1.2.840.113635.100.6.1.12\",\n    \"1.2.840.113635.100.6.1.2\"\n), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{\n    \"application-identifier\" = \"FX2M56Q5GV.com.mercury.serenity.us\";\n    \"com.apple.developer.applesignin\" =     (\n        Default\n    );\n    \"com.apple.developer.team-identifier\" = FX2M56Q5GV;\n    \"com.apple.security.application-groups\" =     (\n        \"group.com.mercury.serenity.us\"\n    );\n    \"get-task-allow\" = 1;\n}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/\U951a\U70b9 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'>"
+)
+2025-12-01 13:05:18 +0000  Archs to thin for item /Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app are []
+2025-12-01 13:05:18 +0000  [OPTIONAL] Found platform <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>> and cert <DVTSigningCertificate: 0x88cba7000; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''> for <DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>
+2025-12-01 13:05:18 +0000  [OPTIONAL] Profile <DVTEmbeddedProvisioningProfile 0x88cba7000: name: iOS Team Provisioning Profile: com.mercury.serenity.us, UUID: f1604ac5-729c-4b22-8ba0-5ce3d67a0cc0, teamName: Daniel Lee, teamIdentifierPrefixes: (
+    FX2M56Q5GV
+), entitlements: {
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.driverkit.family.midi" = 1;
+    "com.apple.developer.family-controls" = 1;
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.chengyu",
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "FX2M56Q5GV.*",
+        "com.apple.token"
+    );
+}, appIdentifierName: XC com mercury serenity us, applicationIdentifierPrefixes: (
+    FX2M56Q5GV
+), dateCreated: 2025-12-01 09:00:45 +0000, dateExpired: 2026-12-01 09:00:45 +0000, certificateKinds: {(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+)}, certificateSHA1Hashes: {(
+    8BF548EDE9A4DB6F737A30371F1866C950DCE0FC
+)}, supportedUDIDs: {(
+    "00008140-00061d8c3ae1801c"
+)}, isUniversal: 0, isXcodeManaged: 1, platforms: {(
+    <DVTPlatform:0x89b26b580:'com.apple.platform.xros':<DVTFilePath:0x89ac148a0:'/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform'>>,
+    <DVTPlatform:0x89b26b500:'com.apple.platform.watchos':<DVTFilePath:0x89b294540:'/Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform'>>,
+    <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>
+)}, filePath: <DVTFilePath:0x8aaa83560:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/embedded.mobileprovision'>> for <DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'> was an automatic profile
+2025-12-01 13:05:18 +0000  Distributable's provisioning style is Automatic
+2025-12-01 13:05:19 +0000  App Store Connect request for store configuration response: <DVTITunesConnectConfigurationResponse: 0x896a41380; isSuccessful='1', configuration='{
+    FX2M56Q5GV =     {
+        "com.apple.platform.appletvos" =         {
+            architectures =             {
+                defaultArch =                 {
+                    defaultProductType =                     {
+                        format =                         {
+                            bitCode =                             {
+                                supportLevel = unsupported;
+                            };
+                            compiledCode =                             {
+                                supportLevel = required;
+                            };
+                        };
+                    };
+                };
+            };
+            iconSource =             {
+                largeAppIcon = carInBinary;
+                primaryIcons = carInBinary;
+            };
+            onDemandResources =             {
+                sizeLimits =                 {
+                    assetPack = 512000000;
+                    prioritizedTotal = 2000000000;
+                    total = 20000000000;
+                };
+                supportLevel = supported;
+            };
+        };
+        "com.apple.platform.iphoneos" =         {
+            architectures =             {
+                defaultArch =                 {
+                    defaultProductType =                     {
+                        format =                         {
+                            bitCode =                             {
+                                supportLevel = unsupported;
+                            };
+                            compiledCode =                             {
+                                supportLevel = required;
+                            };
+                        };
+                    };
+                };
+            };
+            iconSource =             {
+                largeAppIcon = unsupported;
+                primaryIcons = pngInBinary;
+            };
+            onDemandResources =             {
+                sizeLimits =                 {
+                    assetPack = 512000000;
+                    total = 20000000000;
+                };
+                supportLevel = supported;
+            };
+        };
+        "com.apple.platform.macosx" =         {
+            architectures =             {
+                defaultArch =                 {
+                    defaultProductType =                     {
+                        format =                         {
+                            bitCode =                             {
+                                supportLevel = unsupported;
+                            };
+                            compiledCode =                             {
+                                supportLevel = required;
+                            };
+                        };
+                    };
+                };
+            };
+            iconSource =             {
+                largeAppIcon = pngInBinary;
+                primaryIcons = pngInBinary;
+            };
+            onDemandResources =             {
+                supportLevel = unsupported;
+            };
+        };
+        "com.apple.platform.watchos" =         {
+            architectures =             {
+                defaultArch =                 {
+                    defaultProductType =                     {
+                        format =                         {
+                            bitCode =                             {
+                                supportLevel = unsupported;
+                            };
+                            compiledCode =                             {
+                                supportLevel = required;
+                            };
+                        };
+                    };
+                };
+            };
+            iconSource =             {
+                largeAppIcon = unsupported;
+                primaryIcons = pngInBinary;
+            };
+            onDemandResources =             {
+                supportLevel = unsupported;
+            };
+        };
+        "com.apple.platform.xros" =         {
+            architectures =             {
+                defaultArch =                 {
+                    defaultProductType =                     {
+                        format =                         {
+                            bitCode =                             {
+                                supportLevel = unsupported;
+                            };
+                            compiledCode =                             {
+                                supportLevel = required;
+                            };
+                        };
+                    };
+                };
+            };
+            iconSource =             {
+                largeAppIcon = carInBinary;
+                primaryIcons = carInBinary;
+            };
+            onDemandResources =             {
+                supportLevel = unsupported;
+            };
+        };
+        configModelVersion = "1.1";
+    };
+    preflight =     (
+        FX2M56Q5GV
+    );
+}', alertMessage='(null)', errors='(null)', warnings='(null)', infoMessages='(null)'>
+2025-12-01 13:05:19 +0000  App Store Connect team IDs for account (null) are (
+    FX2M56Q5GV
+)
+2025-12-01 13:05:22 +0000  Starting evaluation for distribution items:
+(
+    "<IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/\U951a\U70b9 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4900; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(\n    \"1.2.840.113635.100.6.1.12\",\n    \"1.2.840.113635.100.6.1.2\"\n), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{\n    \"application-identifier\" = \"FX2M56Q5GV.com.mercury.serenity.us\";\n    \"com.apple.developer.applesignin\" =     (\n        Default\n    );\n    \"com.apple.developer.team-identifier\" = FX2M56Q5GV;\n    \"com.apple.security.application-groups\" =     (\n        \"group.com.mercury.serenity.us\"\n    );\n    \"get-task-allow\" = 1;\n}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/\U951a\U70b9 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'>"
+)
+2025-12-01 13:05:22 +0000 [MT] Evaluating <IDEDistributionItemProvisionable: 0x8abe73780; distributionItem='<IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4a80; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x8959c8f40; teamID='FX2M56Q5GV', teamName='Daniel Lee', teamType='Individual', username='2945235656@qq.com', isFreeProvisioningTeam='0'>', method='<IDEDistributionMethodiOSAppStoreDistribution: 0x88f5444f0>', provisioningStyle='0', entitlementsProcessors='(
+    "<IDEiCloudEntitlementsProcessor: 0x896151cb0>",
+    "<IDEAppAttestEnvironmentEntitlementsProcessor: 0x896152be0>",
+    "<IDEClassKitEntitlementsProcessor: 0x896152d30>",
+    "<IDEAppIdentifierPrefixedEntitlementsProcessor: 0x896152460>"
+)'> with overrides <IDEProvisionableOverrides 0x88cba5ec0: configuration: Default, profileSupport: <IDEProvisioningProfileSupport: 0x89aa711f0>, provisioningStyle: (null), certificateSigningStyle: (null), provisioningPurpose: app-store, team: (null), platform: <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>, sdk: (null), sdkVariant: (null), profileSpecifier: (null), certificateIdentifier: (null), bundleIdentifier: (null), entitlements: (null), entitlementsFile: (null), baseEntitlements: (null), entitlementsExpansion: (null), entitlementsDestination: (null), allowSigningWithoutTeamSelection: (null), signingRequiresTeam: (null), appIDFeatures: (null)>
+2025-12-01 13:05:22 +0000 [MT] Applying entitlements delta for <IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4a80; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'> from <IDEiCloudEntitlementsProcessor: 0x896151cb0>: {
+}
+2025-12-01 13:05:22 +0000 [MT] Applying entitlements delta for <IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4a80; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'> from <IDEAppAttestEnvironmentEntitlementsProcessor: 0x896152be0>: {
+}
+2025-12-01 13:05:22 +0000 [MT] Applying entitlements delta for <IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4a80; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'> from <IDEClassKitEntitlementsProcessor: 0x896152d30>: {
+}
+2025-12-01 13:05:22 +0000 [MT] Applying entitlements delta for <IDEDistributionItem: 0x88cafed60; bundleID='com.mercury.serenity.us', path='<DVTFilePath:0x88f224a20:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x88caffea0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88cba4a80; name='Apple Development: Daniel Lee (C7UC872T48)', hash='8BF548EDE9A4DB6F737A30371F1866C950DCE0FC', serialNumber='10DCA1D915A02D899B9AFAD170E9376B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-24 06:55:46 +0000''>', entitlements='{
+    "application-identifier" = "FX2M56Q5GV.com.mercury.serenity.us";
+    "com.apple.developer.applesignin" =     (
+        Default
+    );
+    "com.apple.developer.team-identifier" = FX2M56Q5GV;
+    "com.apple.security.application-groups" =     (
+        "group.com.mercury.serenity.us"
+    );
+    "get-task-allow" = 1;
+}', teamID='FX2M56Q5GV', identifier='com.mercury.serenity.us', executablePath='<DVTFilePath:0x898dfcf60:'/Users/mercury/Library/Developer/Xcode/Archives/2025-12-01/锚点 US 2025-12-1, 21.05.xcarchive/Products/Applications/AnchorUS.app/AnchorUS'>', hardenedRuntime='0'>'> from <IDEAppIdentifierPrefixedEntitlementsProcessor: 0x896152460>: {
+    "application-identifier" = "$(AppIdentifierPrefix)com.mercury.serenity.us";
+}
+2025-12-01 13:05:26 +0000 [MT] Evaluation for AnchorUS.app is <IDEProvisionableStatusEvaluation 0x8aaf62f40: inputs: <IDEProvisionableStatusEvalutorInputs 0x8aaf7f020: provisionableSnapshot: <IDEProvisionableSnapshot 0x89613e550: name: AnchorUS.app, configurations: {
+    Default = "<_IDEProvisionableConfigurationSnapshot 0x896d00dc0: name: Default, provisioningStyle: 0, certificateSigningStyle: 2, team: <IDEProvisioningDisambiguatableBasicTeam: 0x8959c8f40; teamID='FX2M56Q5GV', teamName='Daniel Lee', teamType='Individual', username='2945235656@qq.com', isFreeProvisioningTeam='0'>, profileSupport: <IDEProvisioningProfileSupport: 0x89aa702d0>, platform: <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>, sdk: (null), sdkVariant: (null), bundleIdentifier: com.mercury.serenity.us, profileSpecifier: (null), certificateIdentifier: iPhone Distribution, entitlementsFilePath: (null), baseEntitlements: <IDEProvisionableEntitlements: 0x88cbc3420; signedEntitlements='{\n    \"application-identifier\" = \"$(AppIdentifierPrefix)com.mercury.serenity.us\";\n    \"com.apple.developer.applesignin\" =     (\n        Default\n    );\n    \"com.apple.developer.team-identifier\" = FX2M56Q5GV;\n    \"com.apple.security.application-groups\" =     (\n        \"group.com.mercury.serenity.us\"\n    );\n}', simulatedEntitlements='(null)'>, entitlementsExpansion: <IDEDistributionProvisioningEntitlementsExpansion: 0x89aa71980>, entitlementsDestination: 1, allowSigningWithoutTeamSelection: 0, signingRequiresTeam: 0, appIDFeatures: <DVTPortalAppIDFeatures 0x88c44b020: Features: {\n    \"<DVTPortalProfileFeature: 0x89e14b090; id='APPLE_ID_AUTH', userDescription='Sign in with Apple', platforms='.macosx, .appletvos, .iphoneos, .xros, .watchos'>\" = 1;\n    \"<DVTPortalProfileFeature: 0x89e14b250; id='APP_GROUPS', userDescription='App Groups', platforms='.macosx, .appletvos, .iphoneos, .xros, .watchos'>\" = 1;\n}, Containers: {\n    \"Xcode.Portal.Container.Type.AppGroup\" = \"{(\\n    \\\"group.com.mercury.serenity.us\\\"\\n)}\";\n}>, provisioningPurpose: app-store, supportsIOSMac: 0>";
+}, overrides: <IDEProvisionableOverrides 0x88cba5ec0: configuration: Default, profileSupport: <IDEProvisioningProfileSupport: 0x89aa711f0>, provisioningStyle: (null), certificateSigningStyle: (null), provisioningPurpose: app-store, team: (null), platform: <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>, sdk: (null), sdkVariant: (null), profileSpecifier: (null), certificateIdentifier: (null), bundleIdentifier: (null), entitlements: (null), entitlementsFile: (null), baseEntitlements: (null), entitlementsExpansion: (null), entitlementsDestination: (null), allowSigningWithoutTeamSelection: (null), signingRequiresTeam: (null), appIDFeatures: (null)>>>, configuration: Default, codesignParameterSnapshot: (null), errors: (
+    "Error Domain=IDECodesignResolverErrorDomain Code=0 \"Provisioning profile \"iOS Team Store Provisioning Profile: com.mercury.serenity.us\" failed qualification checks\" UserInfo={qualification=<IDEProfileQualification: 0x8abddb280>, NSLocalizedDescription=Provisioning profile \"iOS Team Store Provisioning Profile: com.mercury.serenity.us\" failed qualification checks, NSLocalizedRecoverySuggestion=Profile failed qualification checks}"
+)>
+2025-12-01 13:05:26 +0000  Step failed: <IDEDistributionSigningAssetsStep: 0x88d09f000>: Error Domain=IDEDistributionSigningAssetStepErrorDomain Code=0 "Locating signing assets failed." UserInfo={NSLocalizedDescription=Locating signing assets failed., IDEDistributionUnderlyingErrors=(
+    "Error Domain=IDEProfileQualificationErrorDomain Code=5 \"Profile doesn't include the selected signing certificate.\" UserInfo={NSLocalizedDescription=Profile doesn't include the selected signing certificate., IDEDistributionIssueSeverity=3, IDEProfileQualificationError_MissingCerts={(\n    <DVTSigningCertificate: 0x88cd4c240; name='Apple Distribution: Daniel Lee (FX2M56Q5GV)', hash='6ACB556F19F0F3DD25946855FB001C8EA745134E', serialNumber='3235AC61B9773C48AEE0147869CA291A', certificateKinds='(\n    \"1.2.840.113635.100.6.1.7\",\n    \"1.2.840.113635.100.6.1.4\"\n), issueDate='2025-12-01 09:47:48 +0000''>\n)}, IDEProfileQualificationError_Profile=<DVTEmbeddedProvisioningProfile 0x88cba7600: name: iOS Team Store Provisioning Profile: com.mercury.serenity.us, UUID: 989ab0ae-aae9-424a-bca0-605d08e055c2, teamName: Daniel Lee, teamIdentifierPrefixes: (\n    FX2M56Q5GV\n), entitlements: {\n    \"application-identifier\" = \"FX2M56Q5GV.com.mercury.serenity.us\";\n    \"beta-reports-active\" = 1;\n    \"com.apple.developer.applesignin\" =     (\n        Default\n    );\n    \"com.apple.developer.team-identifier\" = FX2M56Q5GV;\n    \"com.apple.security.application-groups\" =     (\n        \"group.com.mercury.chengyu\",\n        \"group.com.mercury.serenity.us\"\n    );\n    \"get-task-allow\" = 0;\n    \"keychain-access-groups\" =     (\n        \"FX2M56Q5GV.*\",\n        \"com.apple.token\"\n    );\n}, appIdentifierName: XC com.mercury.serenity.us, applicationIdentifierPrefixes: (\n    FX2M56Q5GV\n), dateCreated: 2025-12-01 13:05:26 +0000, dateExpired: 2026-12-01 08:58:40 +0000, certificateKinds: {(\n    \"1.2.840.113635.100.6.1.4\",\n    \"1.2.840.113635.100.6.1.7\"\n)}, certificateSHA1Hashes: {(\n    B6A51B2B5517816DF7E71CB1152BDD36BB33089D\n)}, supportedUDIDs: {(\n)}, isUniversal: 0, isXcodeManaged: 1, platforms: {(\n    <DVTPlatform:0x89b26b580:'com.apple.platform.xros':<DVTFilePath:0x89ac148a0:'/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform'>>,\n    <DVTPlatform:0x89b26b500:'com.apple.platform.watchos':<DVTFilePath:0x89b294540:'/Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform'>>,\n    <DVTPlatform:0x89b26b400:'com.apple.platform.iphoneos':<DVTFilePath:0x89b294460:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>\n)}, filePath: <DVTFilePath:0x88dda1d60:'/Users/mercury/Library/Developer/Xcode/UserData/Provisioning Profiles/989ab0ae-aae9-424a-bca0-605d08e055c2.mobileprovision'>>}"
+)}

@@ -1,0 +1,152 @@
+2025-12-01 21:05:21.789 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] --- Xcode ---
+ContentDelivery version 26.10.1 (171001) (API 0)
+Macintosh; macOS 26.1 25B78 (arm64)
+Free disk space: 109.739GB
+2025-12-01 21:05:21.789 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] Created log file at path '/private/var/folders/d6/mpzyh3mx351fhv2vyrgq5smw0000gn/T/锚点 US_2025-12-01_21-05-17.114.xcdistributionlogs/ContentDelivery.log'.
+2025-12-01 21:05:21.789 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] Show Progress: Contacting Apple Services…
+2025-12-01 21:05:21.790 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] APNS device token specified (bundle ID 'com.apple.dt.Xcode.ITunesSoftwareService').
+2025-12-01 21:05:21.790 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] Will request push notifications for upload.
+2025-12-01 21:05:21.794 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] 
+=======================================
+CREATE BUILD (ASSET_UPLOAD) REQUEST:
+
+         URL: https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds
+     timeout: 900 seconds
+      method: POST
+ httpHeaders: {
+    Accept = "application/json";
+    "Accept-Language" = "zh-Hans-CN";
+    "Content-Length" = 517;
+    "Content-Type" = "application/json";
+    "User-Agent" = "com.apple.dt.Xcode.ITunesSoftwareService/16.0-24420 (Macintosh; macOS 26.1 25B78 (arm64)) ContentDelivery/26.10.1-171001";
+    "X-Apple-App-Info" = "com.apple.gs.xcode.auth";
+    "X-Apple-GS-Token" = "**hidden value**";
+    "X-Apple-I-Client-Time" = "2025-12-01T13:05:21Z";
+    "X-Apple-I-Identity-Id" = "000326-08-679fe0bf-659d-4b5b-9b83-90e1aec15f50";
+    "X-Apple-I-Locale" = "en_CN";
+    "X-Apple-I-MD" = "AAAABQAAABBXgCf4zfT1gRL8nMWlEf4tgAAAAQ==";
+    "X-Apple-I-MD-LU" = 3BB5EA38B8F9547EEAE7FEB9216C7302627928E80FF27C725BCAF6AEDEBCBA5C;
+    "X-Apple-I-MD-M" = "VDTRCSAgoNnTcYXZn/46XB7FXbg/inEJoOkREauwMEoklhdQ6svDxsG7ar3wA99xTLyAoRPBAgLnoQis";
+    "X-Apple-I-MD-RINFO" = 33883392;
+    "X-Apple-I-TimeZone" = "GMT+8";
+    "X-MMe-Client-Info" = "<Mac16,12> <macOS;26.1;25B78> <com.apple.AuthKit/1 (com.apple.dt.Xcode.ITunesSoftwareService/24420)>";
+    "X-Mme-Device-Id" = "C41F551F-E799-562E-A467-2BE14F27C571";
+    "x-connect-team-id" = "bea9634a-8062-4f6b-b236-7e494321c8c3";
+    "x-connect-team-type" = "CONTENT_PROVIDER";
+}
+    httpBody: {"data":{"attributes":{"cfBundleShortVersionString":"1.0","cfBundleVersion":"1","platform":"IOS"},"relationships":{"app":{"data":{"id":"6755917043","type":"apps"}},"deliveryNotifications":{"data":[{"id":"${notification}","type":"deliveryNotifications"}]}},"type":"builds"},"included":[{"attributes":{"deliveryMechanism":"APNS","deviceId":"b5e0f9ada873124231db84c4f890b0a825c21dc7b3662c47791111584e17613e","environment":"PRODUCTION","sourceApplication":"XCODE"},"id":"${notification}","type":"deliveryNotifications"}]}
+========================================
+2025-12-01 21:05:21.794 DEBUG: [ContentDelivery.Uploader.C6C8C5B80] *** Launching: /usr/bin/log stream --predicate process contains "Xcode" and subsystem == "com.apple.network" --debug --info --style compact
+2025-12-01 21:05:21.795 DEBUG: [ContentDelivery.Uploader.C6C8C5B80] Executing: /usr/bin/log stream --predicate process contains "Xcode" and subsystem == "com.apple.network" --debug --info --style compact
+2025-12-01 21:05:22.302 DEBUG: [ContentDelivery.Uploader.C6CC1E800] Download task 1 sent 517 bytes (517 of 517 bytes sent).
+2025-12-01 21:05:22.707 DEBUG: [ContentDelivery.Uploader.C6C8C4F40] Download task 1 did write 4384 bytes.
+2025-12-01 21:05:22.722 DEBUG: [ContentDelivery.Uploader.C6C8C4E00] Download task 1 did write file: file:///var/folders/d6/mpzyh3mx351fhv2vyrgq5smw0000gn/T/CFNetworkDownload_sirev4.tmp
+2025-12-01 21:05:22.722 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] 
+=======================================
+CREATE BUILD (ASSET_UPLOAD) RESPONSE:
+
+         URL: https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds
+ status code: 201 (created)
+ httpHeaders: {
+    "Content-Length" = 4384;
+    "Content-Type" = "application/json";
+    Date = "Mon, 01 Dec 2025 13:05:22 GMT";
+    Location = "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9";
+    Server = "daiquiri/5";
+    "Set-Cookie" = "dqsid=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjQ1OTQzMjIsImp0aSI6Ijg1cGZLZm5EZ1dQMFk5M2VCYlJLUkEifQ.XwfQOTXOuVBISf3AWbEywPtocuzo39WGIDXa4K_hL4w; Max-Age=1800; Expires=Mon, 01 Dec 2025 13:35:22 GMT; Path=/; Secure; HTTPOnly";
+    "Strict-Transport-Security" = "max-age=31536000; includeSubDomains";
+    "apple-originating-system" = MZContentDeliveryService;
+    "apple-seq" = "0.0";
+    "apple-timing-app" = 79;
+    "apple-tk" = false;
+    b3 = "877c0a7f172ef627c1ecc685c99c9564-ca977e6559fcc9a3";
+    "x-apple-jingle-correlation-key" = Q56AU7YXF33CPQPMY2C4THEVMQ;
+    "x-apple-request-uuid" = "877c0a7f-172e-f627-c1ec-c685c99c9564";
+    "x-b3-spanid" = ca977e6559fcc9a3;
+    "x-b3-traceid" = 877c0a7f172ef627c1ecc685c99c9564;
+    "x-daiquiri-instance" = "daiquiri:33624001:pv50p00it-hyhk10063801:7987:25RELEASE148:daiquiri-amp-processing-shared-int-001-pv, daiquiri:18493001:mr85p00it-hyhk03154801:7987:25RELEASE148:daiquiri-amp-all-shared-ext-001-mr";
+    "x-daiquiri-rate-limit-timing-user" = 0;
+    "x-daiquiri-rate-limit-user" = "user-hour-lim:3600;user-hour-rem:3598;";
+}
+    httpBody: {
+  "data" : {
+    "type" : "builds",
+    "id" : "30af6dd1-a571-4982-acd7-c0e26e3bcaa9",
+    "attributes" : {
+      "version" : "1",
+      "uploadedDate" : null,
+      "processingState" : null,
+      "processingErrors" : null,
+      "buildProcessingState" : null
+    },
+    "relationships" : {
+      "app" : {
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/app",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/app"
+        }
+      },
+      "buildDeliveryFiles" : {
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/buildDeliveryFiles",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/buildDeliveryFiles"
+        }
+      },
+      "deliveryNotifications" : {
+        "meta" : {
+          "paging" : {
+            "total" : 1,
+            "limit" : 10
+          }
+        },
+        "data" : [ {
+          "type" : "deliveryNotifications",
+          "id" : "2c75eb25-edcd-4d61-8679-b63dda7e9895"
+        } ],
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/deliveryNotifications",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/deliveryNotifications"
+        }
+      },
+      "buildAssetDescription" : {
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/buildAssetDescription",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/buildAssetDescription"
+        }
+      },
+      "buildAsset" : {
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/buildAsset",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/buildAsset"
+        }
+      },
+      "buildAssetSpi" : {
+        "links" : {
+          "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/relationships/buildAssetSpi",
+          "related" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9/buildAssetSpi"
+        }
+      }
+    },
+    "links" : {
+      "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds/30af6dd1-a571-4982-acd7-c0e26e3bcaa9"
+    }
+  },
+  "included" : [ {
+    "type" : "deliveryNotifications",
+    "id" : "2c75eb25-edcd-4d61-8679-b63dda7e9895",
+    "attributes" : {
+      "deliveryMechanism" : "APNS",
+      "deviceId" : "b5e0f9ada873124231db84c4f890b0a825c21dc7b3662c47791111584e17613e",
+      "sourceApplication" : "XCODE",
+      "environment" : "PRODUCTION"
+    },
+    "links" : {
+      "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/deliveryNotifications/2c75eb25-edcd-4d61-8679-b63dda7e9895"
+    }
+  } ],
+  "links" : {
+    "self" : "https://contentdelivery.itunes.apple.com/MZContentDeliveryService/iris/provider/bea9634a-8062-4f6b-b236-7e494321c8c3/v1/builds"
+  }
+}
+=======================================
+2025-12-01 21:05:22.723 DEBUG: [ContentDelivery.Uploader.C6C8C51C0] Received build ID: 30af6dd1-a571-4982-acd7-c0e26e3bcaa9

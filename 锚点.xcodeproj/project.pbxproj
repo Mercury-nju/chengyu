@@ -11,27 +11,19 @@
 		AC0080CD2ED62045006B7608 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC0080CC2ED62045006B7608 /* GoogleSignInSwift */; };
 		AC14BB732EDAFE7F00F15D5E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = AC14BB722EDAFE7F00F15D5E /* GoogleSignIn */; };
 		AC14BB752EDAFE8200F15D5E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC14BB742EDAFE8200F15D5E /* GoogleSignInSwift */; };
-		ACCF3A142ED4695C00D06E3F /* TotalActivityReport-CN.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ACCF3A082ED4695C00D06E3F /* TotalActivityReport-CN.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		AC0080D02ED62791006B7608 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACECD86C2ED06BF6005119B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC394CCF2ED5CE5700F4A023;
-			remoteInfo = "TotalActivityReport copy";
-		};
-		ACCF3A122ED4695C00D06E3F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACECD86C2ED06BF6005119B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ACCF3A072ED4695C00D06E3F;
-			remoteInfo = TotalActivityReport;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
+		AC0F87992EDCD1620025042F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC394B0D2ED5B9E300F4A023 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,7 +40,6 @@
 			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
 			dstSubfolderSpec = 16;
 			files = (
-				ACCF3A142ED4695C00D06E3F /* TotalActivityReport-CN.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,51 +48,21 @@
 
 /* Begin PBXFileReference section */
 		AC0F82D42EDC3CA90025042F /* Configuration-US.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Configuration-US.storekit"; sourceTree = "<group>"; };
+		AC0F878F2EDCD1620025042F /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		AC0F89B72EDD90A80025042F /* 锚点 USDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "锚点 USDebug.entitlements"; sourceTree = "<group>"; };
 		AC14BB712EDAFCD000F15D5E /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		AC394B122ED5B9E300F4A023 /* AnchorUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnchorUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC394CD62ED5CE5700F4A023 /* TotalActivityReportUS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = TotalActivityReportUS.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACCF3A082ED4695C00D06E3F /* TotalActivityReport-CN.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "TotalActivityReport-CN.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACECD8742ED06BF6005119B8 /* 澄域.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "澄域.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet */
-		AC394B132ED5B9E300F4A023 /* Exceptions for "锚点" folder in "锚点 US" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-			);
-			target = AC394B072ED5B9E300F4A023 /* 锚点 US */;
-		};
-		AC394CD82ED5CE5700F4A023 /* Exceptions for "TotalActivityReport" folder in "TotalActivityReport copy" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = AC394CCF2ED5CE5700F4A023 /* TotalActivityReport copy */;
-		};
-		ACCF3A152ED4695C00D06E3F /* Exceptions for "TotalActivityReport" folder in "TotalActivityReport" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = ACCF3A072ED4695C00D06E3F /* TotalActivityReport */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		ACCF3A092ED4695C00D06E3F /* TotalActivityReport */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				ACCF3A152ED4695C00D06E3F /* Exceptions for "TotalActivityReport" folder in "TotalActivityReport" target */,
-				AC394CD82ED5CE5700F4A023 /* Exceptions for "TotalActivityReport" folder in "TotalActivityReport copy" target */,
-			);
 			path = TotalActivityReport;
 			sourceTree = "<group>";
 		};
 		ACECD8762ED06BF6005119B8 /* 锚点 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				AC394B132ED5B9E300F4A023 /* Exceptions for "锚点" folder in "锚点 US" target */,
-			);
 			path = "锚点";
 			sourceTree = "<group>";
 		};
@@ -114,20 +75,6 @@
 			files = (
 				AC0080CB2ED62045006B7608 /* GoogleSignIn in Frameworks */,
 				AC0080CD2ED62045006B7608 /* GoogleSignInSwift in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AC394CD12ED5CE5700F4A023 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACCF3A052ED4695C00D06E3F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +93,7 @@
 		AC0080CE2ED62791006B7608 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC0F878F2EDCD1620025042F /* DeviceActivity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,6 +101,7 @@
 		ACECD86B2ED06BF6005119B8 = {
 			isa = PBXGroup;
 			children = (
+				AC0F89B72EDD90A80025042F /* 锚点 USDebug.entitlements */,
 				AC0F82D42EDC3CA90025042F /* Configuration-US.storekit */,
 				AC14BB712EDAFCD000F15D5E /* Configuration.storekit */,
 				ACECD8762ED06BF6005119B8 /* 锚点 */,
@@ -166,9 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				ACECD8742ED06BF6005119B8 /* 澄域.app */,
-				ACCF3A082ED4695C00D06E3F /* TotalActivityReport-CN.appex */,
 				AC394B122ED5B9E300F4A023 /* AnchorUS.app */,
-				AC394CD62ED5CE5700F4A023 /* TotalActivityReportUS.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,11 +131,11 @@
 				AC394B0B2ED5B9E300F4A023 /* Frameworks */,
 				AC394B0C2ED5B9E300F4A023 /* Resources */,
 				AC394B0D2ED5B9E300F4A023 /* Embed App Extensions */,
+				AC0F87992EDCD1620025042F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AC0080D12ED62791006B7608 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				ACECD8762ED06BF6005119B8 /* 锚点 */,
@@ -202,50 +149,6 @@
 			productReference = AC394B122ED5B9E300F4A023 /* AnchorUS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AC394CCF2ED5CE5700F4A023 /* TotalActivityReport copy */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AC394CD32ED5CE5700F4A023 /* Build configuration list for PBXNativeTarget "TotalActivityReport copy" */;
-			buildPhases = (
-				AC394CD02ED5CE5700F4A023 /* Sources */,
-				AC394CD12ED5CE5700F4A023 /* Frameworks */,
-				AC394CD22ED5CE5700F4A023 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				ACCF3A092ED4695C00D06E3F /* TotalActivityReport */,
-			);
-			name = "TotalActivityReport copy";
-			packageProductDependencies = (
-			);
-			productName = TotalActivityReport;
-			productReference = AC394CD62ED5CE5700F4A023 /* TotalActivityReportUS.appex */;
-			productType = "com.apple.product-type.extensionkit-extension";
-		};
-		ACCF3A072ED4695C00D06E3F /* TotalActivityReport */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ACCF3A162ED4695C00D06E3F /* Build configuration list for PBXNativeTarget "TotalActivityReport" */;
-			buildPhases = (
-				ACCF3A042ED4695C00D06E3F /* Sources */,
-				ACCF3A052ED4695C00D06E3F /* Frameworks */,
-				ACCF3A062ED4695C00D06E3F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				ACCF3A092ED4695C00D06E3F /* TotalActivityReport */,
-			);
-			name = TotalActivityReport;
-			packageProductDependencies = (
-			);
-			productName = TotalActivityReport;
-			productReference = ACCF3A082ED4695C00D06E3F /* TotalActivityReport-CN.appex */;
-			productType = "com.apple.product-type.extensionkit-extension";
-		};
 		ACECD8732ED06BF6005119B8 /* 锚点 CN */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACECD87F2ED06BF7005119B8 /* Build configuration list for PBXNativeTarget "锚点 CN" */;
@@ -258,7 +161,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				ACCF3A132ED4695C00D06E3F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				ACECD8762ED06BF6005119B8 /* 锚点 */,
@@ -282,9 +184,6 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					ACCF3A072ED4695C00D06E3F = {
-						CreatedOnToolsVersion = 26.1.1;
-					};
 					ACECD8732ED06BF6005119B8 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -308,29 +207,13 @@
 			projectRoot = "";
 			targets = (
 				ACECD8732ED06BF6005119B8 /* 锚点 CN */,
-				ACCF3A072ED4695C00D06E3F /* TotalActivityReport */,
 				AC394B072ED5B9E300F4A023 /* 锚点 US */,
-				AC394CCF2ED5CE5700F4A023 /* TotalActivityReport copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AC394B0C2ED5B9E300F4A023 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AC394CD22ED5CE5700F4A023 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACCF3A062ED4695C00D06E3F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,20 +237,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC394CD02ED5CE5700F4A023 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACCF3A042ED4695C00D06E3F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		ACECD8702ED06BF6005119B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,26 +246,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		AC0080D12ED62791006B7608 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AC394CCF2ED5CE5700F4A023 /* TotalActivityReport copy */;
-			targetProxy = AC0080D02ED62791006B7608 /* PBXContainerItemProxy */;
-		};
-		ACCF3A132ED4695C00D06E3F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ACCF3A072ED4695C00D06E3F /* TotalActivityReport */;
-			targetProxy = ACCF3A122ED4695C00D06E3F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		AC394B102ED5B9E300F4A023 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "锚点-US/锚点-US.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "锚点 USDebug.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FX2M56Q5GV;
@@ -406,8 +263,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "锚点-US/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Lumea;
-				INFOPLIST_KEY_NSFamilyControlsUsageDescription = "澄域需要访问使用情况数据，以量化高多巴胺应用对您认知资源的影响，帮助您建立更健康的数字使用习惯。";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "澄域 needs microphone access to record your emotional logs.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lumea needs microphone access to record your emotional logs.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -422,7 +278,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
@@ -431,6 +287,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D US_VERSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.serenity.us;
 				PRODUCT_NAME = AnchorUS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -451,6 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "锚点-US/锚点-US.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FX2M56Q5GV;
@@ -460,8 +318,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "锚点-US/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Lumea;
-				INFOPLIST_KEY_NSFamilyControlsUsageDescription = "澄域需要访问使用情况数据，以量化高多巴胺应用对您认知资源的影响，帮助您建立更健康的数字使用习惯。";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "澄域 needs microphone access to record your emotional logs.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lumea needs microphone access to record your emotional logs.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -476,7 +333,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
@@ -485,6 +342,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D US_VERSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.serenity.us;
 				PRODUCT_NAME = AnchorUS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -496,132 +354,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		AC394CD42ED5CE5700F4A023 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "TotalActivityReport-US/TotalActivityReport-US.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FX2M56Q5GV;
-				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_FILE[sdk=*]" = "TotalActivityReport-US/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "TotalActivityReport-US";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.serenity.us.TotalActivityReport;
-				PRODUCT_NAME = TotalActivityReportUS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AC394CD52ED5CE5700F4A023 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "TotalActivityReport-US/TotalActivityReport-US.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FX2M56Q5GV;
-				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_FILE[sdk=*]" = "TotalActivityReport-US/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "TotalActivityReport-US";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.serenity.us.TotalActivityReport;
-				PRODUCT_NAME = TotalActivityReportUS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		ACCF3A172ED4695C00D06E3F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TotalActivityReport/TotalActivityReport.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FX2M56Q5GV;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TotalActivityReport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "TotalActivityReport-CN";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.chengyu.cn.TotalActivityReport;
-				PRODUCT_NAME = "TotalActivityReport-CN";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		ACCF3A182ED4695C00D06E3F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TotalActivityReport/TotalActivityReportRelease.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FX2M56Q5GV;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TotalActivityReport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "TotalActivityReport-CN";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercury.chengyu.cn.TotalActivityReport;
-				PRODUCT_NAME = "TotalActivityReport-CN";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -754,7 +486,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "锚点-CN/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "澄域";
-				INFOPLIST_KEY_NSFamilyControlsUsageDescription = "澄域需要访问使用情况数据，以量化高多巴胺应用对您认知资源的影响，帮助您建立更健康的数字使用习惯。";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "我们需要您的声音来记录思维";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -766,7 +497,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
@@ -803,7 +534,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "锚点-CN/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "澄域";
-				INFOPLIST_KEY_NSFamilyControlsUsageDescription = "澄域需要访问使用情况数据，以量化高多巴胺应用对您认知资源的影响，帮助您建立更健康的数字使用习惯。";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "我们需要您的声音来记录思维";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -815,7 +545,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
@@ -845,24 +575,6 @@
 			buildConfigurations = (
 				AC394B102ED5B9E300F4A023 /* Debug */,
 				AC394B112ED5B9E300F4A023 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AC394CD32ED5CE5700F4A023 /* Build configuration list for PBXNativeTarget "TotalActivityReport copy" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AC394CD42ED5CE5700F4A023 /* Debug */,
-				AC394CD52ED5CE5700F4A023 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ACCF3A162ED4695C00D06E3F /* Build configuration list for PBXNativeTarget "TotalActivityReport" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ACCF3A172ED4695C00D06E3F /* Debug */,
-				ACCF3A182ED4695C00D06E3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

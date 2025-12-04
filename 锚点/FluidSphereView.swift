@@ -2,16 +2,130 @@ import SwiftUI
 import Combine
 import UIKit
 
-struct FluidSphereView: View {
+struct FluidSphereVisualizer: View {
     @Binding var isInteracting: Bool
     var touchLocation: CGPoint
     var material: SphereMaterial = .default
     var stability: Double = 50.0 // MOF: Stability Value (0-100)
     var isTransparent: Bool = false // New property to control background
-    var isStatic: Bool = false // New property to disable movement (for Splash/Calm views)
+    var isStatic: Bool = false // Disable position movement (for Calm/Splash views)
+    var isFullyStatic: Bool = false // Disable all animations including breathing (for Splash only)
     
-    @State private var time: Double = 0
-    @State private var orbs: [Orb] = []
+    // Use StateObject to persist simulation state across View updates
+    @StateObject private var engine = FluidSphereEngine()
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                // 1. Deep Void Background (Ensures glow pops)
+                if !isTransparent {
+                    Color.black.opacity(0.8).ignoresSafeArea()
+                }
+                
+                // 2. The "Liquid Light" Engine
+                Group {
+                    if isFullyStatic {
+                        // 静止模式：只渲染一次
+                        Canvas { context, size in
+                            renderSphere(context: &context, size: size)
+                        }
+                    } else {
+                        // 动画模式：持续刷新
+                        TimelineView(.animation) { timeline in
+                            Canvas { context, size in
+                                engine.update(date: timeline.date)
+                                renderSphere(context: &context, size: size)
+                            }
+                        }
+                    }
+                }
+            }
+            .onAppear {
+                engine.setup(in: geometry.size)
+                // Only start engine if not fully static
+                if !isFullyStatic {
+                    engine.start()
+                }
+            }
+            .onChange(of: isInteracting) { newValue in
+                engine.isInteracting = newValue
+            }
+            .onChange(of: touchLocation) { newValue in
+                engine.touchLocation = newValue
+            }
+            .onChange(of: stability) { newValue in
+                engine.stability = newValue
+            }
+            .onChange(of: isStatic) { newValue in
+                engine.isStatic = newValue
+            }
+            .onChange(of: isFullyStatic) { newValue in
+                engine.isFullyStatic = newValue
+                // Start or stop engine based on static state
+                if newValue {
+                    engine.stop()
+                } else {
+                    engine.start()
+                }
+            }
+        }
+    }
+    
+    // MARK: - Render Helper
+    
+    private func renderSphere(context: inout GraphicsContext, size: CGSize) {
+        // A. Glow Core (The Light) - Additive Blending
+        context.blendMode = material.blendMode
+        context.addFilter(.blur(radius: material.blurRadius))
+        
+        let currentColors = material.colors
+        let orbs = engine.orbs
+        
+        for orb in orbs {
+            let path = Path(ellipseIn: CGRect(
+                x: orb.position.x - orb.radius,
+                y: orb.position.y - orb.radius,
+                width: orb.radius * 2,
+                height: orb.radius * 2
+            ))
+            let baseColor = currentColors[orb.colorIndex % currentColors.count]
+            let finalColor = baseColor.opacity(0.6)
+            
+            context.fill(path, with: .color(finalColor))
+        }
+        
+        // Reset Blend Mode for next layers
+        context.blendMode = .normal
+        context.addFilter(.blur(radius: 0))
+        
+        // B. Fluid Body Mask (Metaball Shape)
+        context.drawLayer { ctx in
+            ctx.addFilter(.alphaThreshold(min: 0.5, color: .white))
+            ctx.addFilter(.blur(radius: 30))
+            
+            for orb in orbs {
+                let path = Path(ellipseIn: CGRect(
+                    x: orb.position.x - orb.radius * 0.8,
+                    y: orb.position.y - orb.radius * 0.8,
+                    width: orb.radius * 1.6,
+                    height: orb.radius * 1.6
+                ))
+                ctx.fill(path, with: .color(.white))
+            }
+        }
+        
+        // C. Specular Highlights (The Membrane)
+        context.blendMode = .overlay
+        for orb in orbs {
+            let highlightPath = Path(ellipseIn: CGRect(
+                x: orb.position.x - orb.radius * 0.3,
+                y: orb.position.y - orb.radius * 0.5,
+                width: orb.radius * 0.5,
+                height: orb.radius * 0.2
+            ))
+            context.fill(highlightPath, with: .color(.white.opacity(0.8)))
+        }
+    }
     
     enum SphereMaterial {
         case `default`
@@ -34,6 +148,27 @@ struct FluidSphereView: View {
         case crystal // 水晶灵韵
         case ink     // 墨色深渊
         case void    // 虚空之境
+        
+        static func fromString(_ name: String) -> SphereMaterial {
+            switch name {
+            case "lava": return .lava
+            case "ice": return .ice
+            case "gold": return .gold
+            case "amber": return .amber
+            case "neon": return .neon
+            case "nebula": return .nebula
+            case "aurora": return .aurora
+            case "sakura": return .sakura
+            case "ocean": return .ocean
+            case "sunset": return .sunset
+            case "forest": return .forest
+            case "galaxy": return .galaxy
+            case "crystal": return .crystal
+            case "ink": return .ink
+            case "void": return .void
+            default: return .default
+            }
+        }
         
         var colors: [Color] {
             switch self {
@@ -177,159 +312,108 @@ struct FluidSphereView: View {
         var colorIndex: Int
         var offset: CGFloat // Phase offset
     }
+}
+
+// MARK: - Simulation Engine
+
+class FluidSphereEngine: ObservableObject {
+    var orbs: [FluidSphereVisualizer.Orb] = []
     
-    let timer = Timer.publish(every: 1/60, on: .main, in: .common).autoconnect()
+    var isInteracting: Bool = false
+    var touchLocation: CGPoint = .zero
+    var stability: Double = 50.0 // MOF: Stability Value (0-100)
+    var isStatic: Bool = false
+    var isFullyStatic: Bool = false
     
-    // Use phase accumulation to prevent jumps when speed changes
-    @State private var phase: Double = 0
+    private var lastUpdateDate: Date?
+    private var phase: Double = 0
+    private var size: CGSize = .zero
     
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // 1. Deep Void Background (Ensures glow pops)
-                if !isTransparent {
-                    Color.black.opacity(0.8).ignoresSafeArea()
-                }
-                
-                // 2. The "Liquid Light" Engine
-                TimelineView(.animation) { timeline in
-                    Canvas { context, size in
-                        let center = CGPoint(x: size.width / 2, y: size.height / 2)
-                        
-                        // A. Glow Core (The Light) - Additive Blending
-                        context.blendMode = material.blendMode
-                        context.addFilter(.blur(radius: material.blurRadius)) // Heavy blur for "cloud" look
-                        
-                        let currentColors = material.colors
-                        
-                        for orb in orbs {
-                            let path = Path(ellipseIn: CGRect(
-                                x: orb.position.x - orb.radius,
-                                y: orb.position.y - orb.radius,
-                                width: orb.radius * 2,
-                                height: orb.radius * 2
-                            ))
-                            let baseColor = currentColors[orb.colorIndex % currentColors.count]
-                            // CRDS: Desaturate if decay multiplier is high (Impure state)
-                            let decayMultiplier = StatusManager.shared.decayMultiplier
-                            let saturationFactor = max(0.0, 1.0 - ((decayMultiplier - 1.0) / 5.0)) // 1.0 -> 0.0
-                            
-                            let finalColor: Color
-                            if decayMultiplier > 1.5 {
-                                let uiColor = UIColor(baseColor)
-                                var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-                                uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-                                finalColor = Color(hue: h, saturation: s * saturationFactor, brightness: b, opacity: 0.6)
-                            } else {
-                                finalColor = baseColor.opacity(0.6)
-                            }
-                            
-                            context.fill(path, with: .color(finalColor))
-                        }
-                        
-                        // Reset Blend Mode for next layers
-                        context.blendMode = .normal
-                        context.addFilter(.blur(radius: 0)) // Reset blur
-                        
-                        // B. Fluid Body Mask (Metaball Shape)
-                        // We draw the shape into a new layer to use as a mask or container
-                        context.drawLayer { ctx in
-                            ctx.addFilter(.alphaThreshold(min: 0.5, color: .white))
-                            ctx.addFilter(.blur(radius: 30))
-                            
-                            for orb in orbs {
-                                let path = Path(ellipseIn: CGRect(
-                                    x: orb.position.x - orb.radius * 0.8, // Slightly smaller for the "solid" core
-                                    y: orb.position.y - orb.radius * 0.8,
-                                    width: orb.radius * 1.6,
-                                    height: orb.radius * 1.6
-                                ))
-                                ctx.fill(path, with: .color(.white))
-                            }
-                        }
-                        
-                        // C. Specular Highlights (The Membrane)
-                        // Sharp, small reflections to simulate surface tension
-                        context.blendMode = .overlay
-                        for orb in orbs {
-                            let highlightPath = Path(ellipseIn: CGRect(
-                                x: orb.position.x - orb.radius * 0.3,
-                                y: orb.position.y - orb.radius * 0.5,
-                                width: orb.radius * 0.5,
-                                height: orb.radius * 0.2
-                            ))
-                            context.fill(highlightPath, with: .color(.white.opacity(0.8)))
-                        }
-                    }
-                }
+    func setup(in size: CGSize) {
+        self.size = size
+        if orbs.isEmpty {
+            let center = CGPoint(x: size.width / 2, y: size.height / 2)
+            
+            // Create a cluster of light orbs
+            for i in 0..<6 {
+                orbs.append(FluidSphereVisualizer.Orb(
+                    position: center,
+                    velocity: CGPoint(
+                        x: CGFloat.random(in: -1...1),
+                        y: CGFloat.random(in: -1...1)
+                    ),
+                    radius: CGFloat.random(in: 40...70), // Reduced from 80-120
+                    colorIndex: i,
+                    offset: CGFloat.random(in: 0...10)
+                ))
             }
-            .onAppear {
-                setupOrbs(in: geometry.size)
-            }
-            .onReceive(timer) { _ in
-                updateOrbs(in: geometry.size)
-            }
+            // Manually notify view to render initial state
+            objectWillChange.send()
         }
     }
     
-    private func setupOrbs(in size: CGSize) {
-        orbs.removeAll() // Fix: Clear existing orbs to prevent accumulation on re-appear
-        let center = CGPoint(x: size.width / 2, y: size.height / 2)
+    func start() {
+        // No-op: Engine is now driven by TimelineView
+        lastUpdateDate = nil
+    }
+    
+    func stop() {
+        // No-op: Engine is now driven by TimelineView
+        lastUpdateDate = nil
+    }
+    
+    func update(date: Date) {
+        guard !orbs.isEmpty else { return }
         
-        // Create a cluster of light orbs
-        for i in 0..<6 {
-            orbs.append(Orb(
-                position: center,
-                velocity: CGPoint(
-                    x: CGFloat.random(in: -1...1),
-                    y: CGFloat.random(in: -1...1)
-                ),
-                radius: CGFloat.random(in: 40...70), // Reduced from 80-120
-                colorIndex: i,
-                offset: CGFloat.random(in: 0...10)
-            ))
+        // Fully static mode: skip all updates
+        if isFullyStatic { return }
+        
+        // Calculate Delta Time
+        let deltaTime: TimeInterval
+        if let lastDate = lastUpdateDate {
+            deltaTime = date.timeIntervalSince(lastDate)
+        } else {
+            deltaTime = 1.0 / 60.0 // Default for first frame
         }
-    }
-    
-    private func updateOrbs(in size: CGSize) {
+        lastUpdateDate = date
+        
+        // Cap delta time to prevent huge jumps if paused for too long
+        let cappedDelta = min(deltaTime, 0.1)
+        
         let center = CGPoint(x: size.width / 2, y: size.height / 2)
         let target = isInteracting ? touchLocation : center
         
         // MOF Logic: Map Stability (0-100) to Dynamics
-        // 0% Stability -> High Chaos (Speed 3.0x, Amplitude 1.5x)
-        // 100% Stability -> Calm (Speed 0.2x, Amplitude 0.5x)
         let normalizedStability = stability / 100.0
         let chaosFactor = 1.0 - normalizedStability
         
-        // CRDS: Decay Multiplier amplifies chaos
-        // 1.0x -> Normal
-        // 7.5x -> Extreme Agitation
-        let decayMultiplier = StatusManager.shared.decayMultiplier
-        let agitation = (decayMultiplier - 1.0) / 6.5 // Normalize 1.0-7.5 to 0.0-1.0
+        // Speed: 0% SV -> 2.5x speed, 100% SV -> 0.3x speed
+        let speedMultiplier = 0.3 + (sqrt(chaosFactor) * 2.2)
         
-        let speedMultiplier = 0.2 + (chaosFactor * 2.8) + (agitation * 4.0) // Boost speed significantly
-        let amplitudeMultiplier = 0.5 + (chaosFactor * 1.0) + (agitation * 2.0) // Boost amplitude
+        // Amplitude: 0% SV -> 1.5x amplitude, 100% SV -> 0.5x amplitude
+        let amplitudeMultiplier = 0.5 + (chaosFactor * 1.0)
         
-        // Update phase based on current speed
-        phase += 0.02 * speedMultiplier
+        // Update phase based on time (60fps baseline: 0.02 per frame ~= 1.2 per second)
+        // So we multiply by 60 to normalize the speed to per-second units
+        phase += cappedDelta * 1.2 * speedMultiplier
         
         for i in 0..<orbs.count {
             var orb = orbs[i]
             
             // Organic Movement Logic
             // 1. Attraction to center/target
+            // Adjust attraction for delta time (approximate 60fps behavior: 0.05 per frame -> 3.0 per second)
             let dx = target.x - orb.position.x
             let dy = target.y - orb.position.y
             
-            // Variable attraction based on index for "layering" effect
-            let attractionStrength = isInteracting ? 0.08 : 0.05
+            let attractionBase = isInteracting ? 0.08 : 0.05
+            let attractionStrength = attractionBase * 60 * cappedDelta
+            
             orb.position.x += dx * attractionStrength
             orb.position.y += dy * attractionStrength
             
             // 2. Perlin-like Noise Motion (using sin/cos)
-            // Skip movement if in static mode (for Splash/Calm views)
             if !isStatic {
-                // Use accumulated phase instead of time * speedMultiplier
                 let noiseX = CGFloat(cos(phase + Double(orb.offset)) * (2 * amplitudeMultiplier))
                 let noiseY = CGFloat(sin((phase * 1.5) + Double(orb.offset)) * (2 * amplitudeMultiplier))
                 orb.position.x += noiseX
@@ -337,7 +421,6 @@ struct FluidSphereView: View {
             }
             
             // 3. Breathing Radius
-            // Use accumulated phase
             orb.radius = 60 + CGFloat(sin((phase * 2) + Double(orb.offset)) * (5 * amplitudeMultiplier))
             
             orbs[i] = orb

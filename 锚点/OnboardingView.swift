@@ -12,6 +12,10 @@ struct OnboardingView: View {
     @State private var noiseTime: Double = 0.0
     @State private var sphereScale: CGFloat = 0.0
     
+    // Skip Logic
+    @State private var currentFullText = ""
+    @State private var isTyping = false
+    
     // Timer
     @State private var timer: Timer?
     @State private var noiseTimer: Timer?
@@ -34,13 +38,8 @@ struct OnboardingView: View {
                 Color.black.ignoresSafeArea()
                 NoiseView(color: .orange, time: noiseTime, intensity: 0.6)
                     .opacity(0.6)
-            } else if sceneIndex == 2 {
-                // Scene 3: Permission (Dark Blue/Grey)
-                Color.black.ignoresSafeArea()
-                NoiseView(color: .blue, time: noiseTime, intensity: 0.2)
-                    .opacity(0.3)
             } else {
-                // Scene 4: Aurora Ascent
+                // Scene 3: Aurora Ascent
                 LinearGradient(
                     colors: [Color(red: 0.1, green: 0.0, blue: 0.3), Color.black],
                     startPoint: .top,
@@ -54,8 +53,8 @@ struct OnboardingView: View {
             VStack {
                 Spacer()
                 
-                // Fluid Sphere (Scene 4 only)
-                if sceneIndex == 3 {
+                // Fluid Sphere (Scene 3 only)
+                if sceneIndex == 2 {
                     VisualFluidSphere()
                         .scaleEffect(sphereScale)
                         .onAppear {
@@ -91,31 +90,15 @@ struct OnboardingView: View {
                 
                 // Actions
                 if showAction {
-                    if sceneIndex < 3 {
+                    if sceneIndex < 2 {
                         Button(action: {
-                            if sceneIndex == 2 {
-                                // Request Screen Time permission
-                                requestScreenTimeAuthorization()
-                            } else {
-                                nextScene()
-                            }
+                            nextScene()
                         }) {
-                            if sceneIndex == 2 {
-                                // Permission Button
-                                Text(L10n.grantAccess)
-                                    .font(Theme.fontBody())
-                                    .foregroundColor(.black)
-                                    .padding(.horizontal, 20)
-                                    .padding(.vertical, 10)
-                                    .background(Color.white)
-                                    .cornerRadius(20)
-                            } else {
-                                Image(systemName: sceneIndex == 1 ? "questionmark" : "arrow.right")
-                                    .font(.system(size: 24))
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Circle().fill(.white.opacity(0.1)))
-                            }
+                            Image(systemName: sceneIndex == 1 ? "questionmark" : "arrow.right")
+                                .font(.system(size: 24))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Circle().fill(.white.opacity(0.1)))
                         }
                         .transition(.scale)
                     } else {
@@ -137,6 +120,10 @@ struct OnboardingView: View {
                 
                 Spacer().frame(height: 50)
             }
+        }
+        .contentShape(Rectangle()) // Ensure tap works on whole screen
+        .onTapGesture {
+            skipTyping()
         }
         .onAppear {
             startScene(index: 0)
@@ -164,10 +151,6 @@ struct OnboardingView: View {
             fullText = scene2Text
             // No background sound
         case 2:
-            // CRDS Permission Step
-            fullText = L10n.onboardingScene3Permission
-            // No background sound
-        case 3:
             fullText = scene3Text
             // No background sound
         default: return
@@ -178,50 +161,51 @@ struct OnboardingView: View {
         let chars = Array(fullText)
         timer?.invalidate()
         
-        // Only typewriter clicks, no background sounds
+        // Store full text for skipping
+        self.currentFullText = fullText
+        self.isTyping = true
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { t in
+        // Uniform typing speed for all versions
+        let interval = 0.025
+        
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { t in
             if charIndex < chars.count {
                 displayedText.append(chars[charIndex])
-                // Play click sound for every 2nd character to reduce audio load
-                if charIndex % 2 == 0 {
+                charIndex += 1
+                
+                // Play click sound for every few characters (only during actual typing)
+                if sceneIndex > 0 && charIndex % 5 == 0 {
                     SoundManager.shared.playTypewriterClick()
                 }
-                charIndex += 1
             } else {
                 t.invalidate()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    withAnimation {
-                        showAction = true
-                        if index == 0 { showSource = true }
-                    }
-                }
+                finishTyping(index: index)
             }
         }
+    }
+    
+    private func finishTyping(index: Int) {
+        self.isTyping = false
+        self.timer?.invalidate()
+        self.displayedText = self.currentFullText
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation {
+                showAction = true
+                if index == 0 { showSource = true }
+            }
+        }
+    }
+    
+    private func skipTyping() {
+        guard isTyping else { return }
+        print("⏩ [Onboarding] Skipping typing effect")
+        finishTyping(index: sceneIndex)
     }
     
     private func nextScene() {
         withAnimation(.easeInOut(duration: 1.0)) {
             startScene(index: sceneIndex + 1)
-        }
-    }
-    
-    private func requestScreenTimeAuthorization() {
-        Task {
-            do {
-                try await ScreenTimeMonitor.shared.requestAuthorization()
-                // Authorization successful, proceed to next scene
-                await MainActor.run {
-                    nextScene()
-                }
-            } catch {
-                // Authorization failed or cancelled
-                // Still proceed to next scene (user can enable later in settings)
-                await MainActor.run {
-                    nextScene()
-                }
-            }
         }
     }
     
@@ -270,11 +254,9 @@ struct OnboardingView: View {
     }
     
     struct VisualFluidSphere: View {
-        @State private var time: Double = 0.0
-        
         var body: some View {
             ZStack {
-                // Simplified visual sphere
+                // Simplified visual sphere - 完全静止
                 Circle()
                     .fill(
                         RadialGradient(
@@ -293,14 +275,8 @@ struct OnboardingView: View {
                     .overlay(
                         Circle()
                             .stroke(Color.cyan.opacity(0.5), lineWidth: 2)
-                            .offset(x: sin(time)*2, y: cos(time)*2)
                             .blur(radius: 2)
                     )
-            }
-            .onAppear {
-                withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
-                    time += .pi * 2
-                }
             }
         }
     }

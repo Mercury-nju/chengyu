@@ -103,7 +103,7 @@ struct SerenityGuideView: View {
         var charIndex = 0
         // Add a small delay to ensure view is ready and transition is done
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { timer in
                 // Guard against step change during animation
                 guard self.currentStep < self.guideSteps.count, 
                       fullText == self.guideSteps[self.currentStep].text else {
@@ -114,9 +114,12 @@ struct SerenityGuideView: View {
                 if charIndex < fullText.count {
                     let index = fullText.index(fullText.startIndex, offsetBy: charIndex)
                     animatedText.append(fullText[index])
-                    // Play typewriter sound for each character
-                    SoundManager.shared.playTypewriterClick()
                     charIndex += 1
+                    
+                    // Play typewriter sound every 5 characters
+                    if charIndex % 5 == 0 {
+                        SoundManager.shared.playTypewriterClick()
+                    }
                 } else {
                     timer.invalidate()
                     isTextComplete = true

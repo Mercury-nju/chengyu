@@ -2,6 +2,7 @@ import SwiftUI
 import AVFoundation
 
 struct CalmView: View {
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @State private var meditationState: MeditationState = .idle
     @State private var selectedDuration: TimeInterval = 300 // Default 5 mins
     @State private var remainingTime: TimeInterval = 300
@@ -162,13 +163,14 @@ struct CalmView: View {
                         .opacity(glowOpacity)
                     
                     // Inner Core (Perfect Sphere)
-                    FluidSphereView(
+                    FluidSphereVisualizer(
                         isInteracting: .constant(false),
                         touchLocation: .zero,
                         material: currentMaterial, // Sync with Flow State
                         stability: 100.0,
                         isTransparent: true, // Remove background card
-                        isStatic: true // Keep sphere static during meditation
+                        isStatic: true,
+                        isFullyStatic: true // Always static - breathing effect comes from outer scale
                     )
                     .frame(width: 280, height: 280)
                     .opacity(0.9)
@@ -400,6 +402,11 @@ struct CalmView: View {
             SubscriptionView()
         }
         .onAppear {
+            // Check subscription status on appear
+            Task {
+                await SubscriptionManager.shared.updateSubscriptionStatus()
+            }
+            
             // 不停止背景音乐，让它继续播放
             // 如果用户选择了冥想音乐，会在 playSound 中自动切换
             animateEntry()
@@ -577,8 +584,8 @@ struct CalmView: View {
             uiOpacity = 1.0
         }
         
-        // Start breathing animation
-        startBreathing()
+        // Don't start breathing animation in idle state - sphere should be completely still
+        // Breathing will start when meditation begins
     }
     
     func openPanel(_ panel: ActivePanel) {
@@ -758,6 +765,10 @@ struct CalmView: View {
         longPressProgress = 0.0
         showExitHint = false
         
+        // Track interrupted meditation
+        let actualDuration = selectedDuration - remainingTime
+        // Note: Meditation tracking removed as CognitiveLoadTracker is deprecated
+        
         if isDisappearing {
             SoundManager.shared.stopMeditationSounds()
         } else {
@@ -773,11 +784,17 @@ struct CalmView: View {
         timer?.invalidate()
         // Sound removed for peaceful completion
         StatusManager.shared.recordMeditationSession(duration: selectedDuration)
+        
+        // Note: Meditation tracking removed as CognitiveLoadTracker is deprecated
     }
     
     func resetToIdle() {
         timer?.invalidate()
         remainingTime = selectedDuration
+        
+        // Stop breathing animation when returning to idle
+        stopBreathingAnimation()
+        
         withAnimation {
             meditationState = .idle
             uiOpacity = 1.0
@@ -785,7 +802,6 @@ struct CalmView: View {
             glowOpacity = 0.3
             breathingScale = 1.0 // Reset breathing scale
         }
-        startBreathing()
     }
     
     func startTimer() {
@@ -829,7 +845,7 @@ struct CalmView: View {
     
     // MARK: - Helpers
     
-    private var currentMaterial: FluidSphereView.SphereMaterial {
+    private var currentMaterial: FluidSphereVisualizer.SphereMaterial {
         let savedMaterial = StatusManager.shared.sphereMaterial
         switch savedMaterial {
         case "lava": return .lava
