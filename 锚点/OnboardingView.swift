@@ -210,8 +210,8 @@ struct OnboardingView: View {
     }
     
     private func finishOnboarding() {
-        // Reset Serenity Guide for new users so they see it on Home
-        UserDefaults.standard.set(false, forKey: "hasSeenSerenityGuide")
+        // 不再在这里重置 SerenityGuide，因为接下来要进入个性化问卷和订阅页面
+        // SerenityGuide 会在用户完成整个流程后，首次进入主界面时显示
         
         withAnimation(.easeInOut(duration: 0.5)) {
             isCompleted = true

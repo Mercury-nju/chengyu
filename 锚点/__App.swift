@@ -14,6 +14,7 @@ import GoogleSignIn
 struct __App: App {
     @State private var showSplash = true
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @AppStorage("hasSeenPersonalization") private var hasSeenPersonalization = false
     
     // init() removed to persist onboarding state
     
@@ -22,23 +23,31 @@ struct __App: App {
             ZStack {
                 // Main Content
                 ContentView()
-                    .opacity(hasSeenOnboarding ? 1 : 0) // Hide until onboarding done
+                    .opacity(hasSeenOnboarding && hasSeenPersonalization ? 1 : 0) // Hide until all onboarding done
                 
-                // Onboarding Overlay
+                // Personalization Overlay (个性化问卷 + 订阅页面)
+                if hasSeenOnboarding && !hasSeenPersonalization && !showSplash {
+                    PersonalizationView(isCompleted: $hasSeenPersonalization)
+                        .transition(.opacity)
+                        .zIndex(2)
+                }
+                
+                // Onboarding Overlay (原有的3段式引导)
                 if !hasSeenOnboarding && !showSplash {
                     OnboardingView(isCompleted: $hasSeenOnboarding)
                         .transition(.opacity)
-                        .zIndex(2)
+                        .zIndex(3)
                 }
                 
                 // Splash Overlay (光球动效)
                 if showSplash {
                     SplashView(isActive: $showSplash)
                         .transition(.opacity)
-                        .zIndex(3)
+                        .zIndex(4)
                 }
             }
             .animation(.easeInOut(duration: 0.8), value: hasSeenOnboarding)
+            .animation(.easeInOut(duration: 0.8), value: hasSeenPersonalization)
             .animation(.easeInOut(duration: 1.0), value: showSplash)
             .onAppear {
                 // Start ambient background music
