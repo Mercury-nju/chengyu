@@ -1,49 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('.bg-video');
     let currentIndex = 0;
-    const intervalTime = 5000; // 5 seconds
+    const displayDuration = 5000; // 5 seconds per video
 
-    // Ensure the first video is active initially and wait for it to load
-    if (videos.length > 0) {
-        const firstVideo = videos[0];
+    if (videos.length === 0) return;
 
-        // Add loading event listener
-        firstVideo.addEventListener('loadeddata', () => {
-            console.log('First video loaded and ready to play');
-            firstVideo.classList.add('active');
-        });
+    // Initialize first video
+    const firstVideo = videos[0];
+    firstVideo.classList.add('active');
 
-        // If video is already loaded (cached), activate it immediately
-        if (firstVideo.readyState >= 2) {
-            firstVideo.classList.add('active');
-        }
+    // Start the loop
+    scheduleNextVideo();
 
-        // Preload the next video
-        if (videos.length > 1) {
-            videos[1].load();
+    function scheduleNextVideo() {
+        setTimeout(() => {
+            playNextVideo();
+        }, displayDuration);
+    }
+
+    function playNextVideo() {
+        const nextIndex = (currentIndex + 1) % videos.length;
+        const nextVideo = videos[nextIndex];
+
+        // Preload next video
+        nextVideo.load();
+
+        // Check if next video is ready to play
+        if (nextVideo.readyState >= 3) { // HAVE_FUTURE_DATA
+            switchVideo(nextVideo, nextIndex);
+        } else {
+            // If not ready, wait for it
+            console.log(`Video ${nextIndex} buffering...`);
+            nextVideo.addEventListener('canplay', function onCanPlay() {
+                nextVideo.removeEventListener('canplay', onCanPlay);
+                switchVideo(nextVideo, nextIndex);
+            }, { once: true });
         }
     }
 
-    function switchVideo() {
-        // Remove active class from current video
+    function switchVideo(nextVideo, nextIndex) {
+        // Switch active class
         videos[currentIndex].classList.remove('active');
-
-        // Calculate next index
-        currentIndex = (currentIndex + 1) % videos.length;
-
-        // Add active class to next video
-        const nextVideo = videos[currentIndex];
         nextVideo.classList.add('active');
 
-        // Preload the video after next
-        const preloadIndex = (currentIndex + 1) % videos.length;
-        if (videos[preloadIndex]) {
-            videos[preloadIndex].load();
-        }
-    }
+        // Play the new video
+        nextVideo.play().catch(e => console.error("Play error:", e));
 
-    // Start the carousel after a delay to ensure first video is visible
-    setTimeout(() => {
-        setInterval(switchVideo, intervalTime);
-    }, 1000);
+        // Update index
+        currentIndex = nextIndex;
+
+        // Schedule next switch
+        scheduleNextVideo();
+    }
 });
