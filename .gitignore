@@ -34,3 +34,7 @@ Temporary Items
 
 # Vercel
 .vercel
+
+# Media
+videos_compressed/
+*.mp4

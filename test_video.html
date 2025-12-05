@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .test-container {
+            padding: 20px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #fff;
+        }
+
+        .status {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center;">Video Loading Test</h1>
+        <div id="status" class="status">Loading...</div>
+
+        <h2>Test 1: 森林.mp4</h2>
+        <video id="video1" controls autoplay muted>
+            <source src="视频背景/森林.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <h2>Test 2: 大海.mp4</h2>
+        <video id="video2" controls muted>
+            <source src="视频背景/大海.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        const video1 = document.getElementById('video1');
+        const video2 = document.getElementById('video2');
+        const status = document.getElementById('status');
+
+        video1.addEventListener('loadeddata', () => {
+            status.innerHTML += '<br>✅ 森林.mp4 loaded successfully!';
+        });
+
+        video1.addEventListener('error', (e) => {
+            status.innerHTML += '<br>❌ Error loading 森林.mp4: ' + e.message;
+        });
+
+        video2.addEventListener('loadeddata', () => {
+            status.innerHTML += '<br>✅ 大海.mp4 loaded successfully!';
+        });
+
+        video2.addEventListener('error', (e) => {
+            status.innerHTML += '<br>❌ Error loading 大海.mp4: ' + e.message;
+        });
+
+        // Check if videos can play
+        setTimeout(() => {
+            if (video1.readyState >= 2) {
+                status.innerHTML += '<br>✅ Video1 ready state: ' + video1.readyState;
+            } else {
+                status.innerHTML += '<br>⚠️ Video1 not ready yet. State: ' + video1.readyState;
+            }
+        }, 3000);
+    </script>
+</body>
+
+</html>
