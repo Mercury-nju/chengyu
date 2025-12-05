@@ -3,9 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     const intervalTime = 5000; // 5 seconds
 
-    // Ensure the first video is active initially
+    // Ensure the first video is active initially and wait for it to load
     if (videos.length > 0) {
-        videos[0].classList.add('active');
+        const firstVideo = videos[0];
+
+        // Add loading event listener
+        firstVideo.addEventListener('loadeddata', () => {
+            console.log('First video loaded and ready to play');
+            firstVideo.classList.add('active');
+        });
+
+        // If video is already loaded (cached), activate it immediately
+        if (firstVideo.readyState >= 2) {
+            firstVideo.classList.add('active');
+        }
+
+        // Preload the next video
+        if (videos.length > 1) {
+            videos[1].load();
+        }
     }
 
     function switchVideo() {
@@ -16,15 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = (currentIndex + 1) % videos.length;
 
         // Add active class to next video
-        videos[currentIndex].classList.add('active');
+        const nextVideo = videos[currentIndex];
+        nextVideo.classList.add('active');
 
-        // Reset the video time to 0 when it becomes active to ensure it plays from start? 
-        // Actually, for a background loop, letting it play or resetting are both fine.
-        // Let's reset it to ensure we see the start of the clip if that's desired, 
-        // but for smooth ambience, maybe just letting it run is better if they are long.
-        // However, the user said "switch every 5 seconds", and the videos might be longer.
-        // Let's just toggle visibility. The 'autoplay loop' in HTML handles playback.
+        // Preload the video after next
+        const preloadIndex = (currentIndex + 1) % videos.length;
+        if (videos[preloadIndex]) {
+            videos[preloadIndex].load();
+        }
     }
 
-    setInterval(switchVideo, intervalTime);
+    // Start the carousel after a delay to ensure first video is visible
+    setTimeout(() => {
+        setInterval(switchVideo, intervalTime);
+    }, 1000);
 });
